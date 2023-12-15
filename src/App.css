@@ -1,0 +1,134 @@
+.login{
+    display: flex;
+    justify-content: flex-end;
+    background-image: url("./img/login1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:620px;
+    
+    
+}
+.login-right{
+    background-color: white;
+    width: 500px;
+    height: 500px;
+    margin-top: 50px;
+    margin-right: 100px;
+    border-radius: 12px;
+    box-shadow: 0 7px 15px 0 rgba(0, 0, 0, 0.2), 0 16px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* body{
+    background-image: url("./img/login1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+} */
+.btn1,.btn2{
+    width: 250px;
+    height: 60px;
+    border: none;
+    font-size: larger;
+    color: white;
+    font-weight: bold;
+
+}
+.btn1{
+    background-color: green;
+    border-radius: 12px 0px 0px 0px;
+}
+.btn2{
+    background-color: brown;
+    border-radius: 0px 12px 0px 0px;
+}
+.btn1:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+  .btn2:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+  .login-page{
+    padding: 30px 50px 0px 50px;
+  }
+  hr{
+    background-color: black;
+  }
+
+  .login-goo{
+    width: 40px;
+    height: 40px;
+
+  }
+  .creat-acc{
+    color: red;
+    margin-top: 20px;
+    font-weight: bold;
+
+  }
+  .New-account{
+    display: flex;
+    justify-content: center;
+  }
+  a{
+    text-decoration: none !important;
+  }
+  .btn-primary{
+    width: 100%;
+    margin-top: 10px;
+    height: 40px;
+    font-weight: bold;
+    background-color: rgb(51, 181, 79);
+  }
+
+  .main_dev{
+    margin: 100px;
+  }
+  .card{
+    box-shadow: 0 17px 15px 0 rgba(0, 0, 0, 0.2), 0 16px 36px 0 rgba(0, 0, 0, 0.19);
+  }
+  .logo{
+    width: 120px;
+    height: 60px;
+  }
+  .logo1{
+   width: 60px;
+  }
+
+  .view_dev{
+    display: flex;
+    padding: 120px 0px 0px 40px;
+  }
+
+  .view_img{
+  width: 600px;
+  height: 400px;
+  box-shadow: 0 17px 15px 0 rgba(0, 0, 0, 0.2), 0 16px 36px 0 rgba(0, 0, 0, 0.19);
+  }
+  .view-body{
+    display: flex;
+  }
+  .view-con{
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+  }
+  .view-con2{
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    max-width: 500px;
+    font-style: italic;
+  }
+
+  label{
+    text-transform:uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .view-body{
+    font-size: 18px;
+    padding-left: 30px;
+  }
