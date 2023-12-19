@@ -123,12 +123,27 @@
     font-style: italic;
   }
 
-  label{
-    text-transform:uppercase;
-    margin-bottom: 1rem;
-  }
-
   .view-body{
     font-size: 18px;
     padding-left: 30px;
+  }
+  .add_con{
+    padding: 100px 0px 0px 0px;
+  }
+
+  .Add_page{
+    display: flex;
+    justify-content: center;
+  }
+
+  .add_body{ 
+    width: 400px;
+  }
+  .add_body2{ 
+    width: 400px;
+    margin-left: 50px;
+  }
+
+  .add_btn{
+    margin-top: 37px;
   }

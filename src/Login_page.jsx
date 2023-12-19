@@ -16,10 +16,11 @@ export function Login_page() {
           <button className="btn2" onClick={() => navigate("/admin")}>Admin</button>
         </div>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="*" element={<Login />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/new_user" element={<Create_Account />} />
           <Route path="/forget_password" element={<Forget />} />
+          
         </Routes>
 
       </div>
