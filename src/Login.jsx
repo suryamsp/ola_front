@@ -76,7 +76,7 @@ const navigate = useNavigate();
       </div>
 
       
-      <div className="New-account"><a href="" onClick={()=>navigate("/new_user")} className="creat-acc">Create Account ?</a></div>
+      <div className="New-account"><button className="creat-acc" onClick={()=>navigate("/new_user")} >Create Account ?</button></div>
     </form>
   );
 }
