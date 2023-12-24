@@ -68,7 +68,7 @@ const navigate = useNavigate();
 
 
       <div>
-        <a className="creat-acc" href="http://localhost:5173/forget_password">Forget Password ?</a></div>
+        <a className="creat-acc" href="" onClick={()=>navigate("/forget_password")} >Forget Password ?</a></div>
       <button type="submit" className="btn btn-primary">Login</button>
       <hr></hr>
       <div className="New-account">
@@ -76,7 +76,7 @@ const navigate = useNavigate();
       </div>
 
       
-      <div className="New-account"><a href="http://localhost:5173/new_user" className="creat-acc">Create Account ?</a></div>
+      <div className="New-account"><a href="" onClick={()=>navigate("/new_user")} className="creat-acc">Create Account ?</a></div>
     </form>
   );
 }
