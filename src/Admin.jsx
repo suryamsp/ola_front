@@ -1,20 +1,36 @@
+import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 
 export function Admin() {
+
+  const navigate= useNavigate();
+
+  const formik= useFormik({
+    initialValues:{key:""},
+    onSubmit:(keys)=>{
+      if( (keys.key) === '4076'){
+        localStorage.setItem("key","suryamsp");
+        navigate("/admin_triplist");
+      }
+    }
+
+    });
+
+
+
+
   return (
-    <form className="login-page">
-      <div className="form-group">
-        <label htmlFor="exampleInputEmail1">User Name</label>
-        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-      </div>
-      <div className="form-group">
-        <label htmlFor="exampleInputPassword1">Password</label>
-        <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
-      </div>
-      <button type="submit" className="btn btn-primary" style={{ backgroundColor: "rgb(195, 74, 74)" }}>Submit</button>
-      <hr></hr>
-      <label className="New-account">Or</label>
+    <form onSubmit={formik.handleSubmit} className="login-page">
+      
       <label htmlFor="exampleInputPassword1">Secret Key</label>
-      <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Secret Key" />
+      <input type="password" className="form-control" 
+       name="key"
+      onChange={formik.handleChange}
+      onBlur={formik.handleBlur}
+      value={formik.values.key}
+      
+      placeholder="Secret Key" />
+      <button type="submit" className="btn btn-primary" style={{ backgroundColor: "rgb(195, 74, 74)" }}>Submit</button>
 
     </form>
   );

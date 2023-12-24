@@ -8,14 +8,14 @@ export function View() {
       <div className="view-body">
 
         <div className="view-con">
-          <label>Trip</label>
-          <label>City</label>
-          <label>Date</label>
-          <label>Route</label>
-          <label>Budjet</label>
-          <label>Status</label>
-          <label>Members</label>
-          <label>Description</label>
+          <p className="left_side">Trip</p>
+          <p className="left_side">City</p>
+          <p className="left_side">Date</p>
+          <p className="left_side">Route</p>
+          <p className="left_side">Budjet</p>
+          <p className="left_side">Status</p>
+          <p className="left_side">Members</p>
+          <p className="left_side">Command</p>
         </div>
         <div className="view-con2">
           <p>: Thirupathi </p>

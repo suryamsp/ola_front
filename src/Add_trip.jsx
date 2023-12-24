@@ -1,4 +1,5 @@
-import { useFormik } from "formik";
+import { useFormik,Formik, Form, Field } from "formik";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -6,144 +7,92 @@ export function Add_trip() {
 
   const navigate = useNavigate();
 
-   const formik= useFormik({
+
+   const {values, handleChange, handleBlur, handleSubmit, setFieldValue}= useFormik({
     initialValues:{
       trip_name:"",
-      city:"",
-      str_date:"",
-      end_date:"",
-      route:"",
-      website:"",
-      budjet:"",
-      status:"",
-      member:"",
       description:"",
-      image:"",
+      image:null,
+      status:"Trip Not Completed",
   },
-  onSubmit:(add)=>{Add_trip(add);
+  onSubmit:(add)=>{Addtrip(add);
   },
    });
 
-   const Add_trip = async (add)=>{ 
+   const handleImageChange = (event, setFieldValue) => {
+    const file = event.currentTarget.files[0];
 
-    await fetch("http://localhost:4000/Add_trip" ,{
-       method:"POST",
-       body:JSON.stringify(add),
-       headers:{"Content-Type":"application/json",},
-     });
-     navigate("/trip_list");
-   }
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        // Set the Formik field value to the base64-encoded string
+        setFieldValue('image', reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  
+  const Addtrip = async (add) => {
+    try {
+      await fetch("http://localhost:4000/Add_trip", {
+        method: "POST",
+        body: JSON.stringify(add),
+        headers: { "Content-Type": "application/json" },
+      });
+      navigate("/trip_list");
+    } catch (error) {
+      console.error("Error during fetch:", error);
+      // Handle the error as needed
+    }
+  };
 
   return (
     <div className="add_con">
-      <form onSubmit={formik.handleSubmit} className="Add_page">
+      <form onSubmit={handleSubmit} className="Add_page">
         <div className="add_body">
           <div className="form-group">
           <label htmlFor="exampleInputPassword1">Trip Name</label>
           <input type="text" 
           className="form-control"
           name="trip_name"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.trip_name}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.trip_name}
+          required
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleInputEmail1">City/State</label>
-          <input type="text" className="form-control" 
-             name="city"
-             onChange={formik.handleChange}
-             onBlur={formik.handleBlur}
-             value={formik.values.city}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleInputPassword1">Starting Date</label>
-          <input type="date" className="form-control"
-             name="str_date"
-             onChange={formik.handleChange}
-             onBlur={formik.handleBlur}
-             value={formik.values.str_date}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleInputPassword1">Ending Date</label>
-          <input type="date" className="form-control"
-             name="end_date"
-             onChange={formik.handleChange}
-             onBlur={formik.handleBlur}
-             value={formik.values.end_date}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleInputPassword1">Route</label>
-          <input type="text" className="form-control"
-             name="route"
-             onChange={formik.handleChange}
-             onBlur={formik.handleBlur}
-             value={formik.values.route}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleInputPassword1">Website</label>
-          <input type="text" className="form-control"
-             name="website"
-             onChange={formik.handleChange}
-             onBlur={formik.handleBlur}
-             value={formik.values.website}
-          />
-        </div>
         </div>
       
-        <div className="add_body2">
-        <div className="form-group">
-          <label htmlFor="exampleInputPassword1">Budjet</label>
-          <input type="text" className="form-control"
-             name="budjet"
-             onChange={formik.handleChange}
-             onBlur={formik.handleBlur}
-             value={formik.values.budjet}
-          />
-        </div>
+
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">Status</label>
-          <select className="form-control"
+          <input type="text" className="form-control"  
              name="status"
-             onChange={formik.handleChange}
-             onBlur={formik.handleBlur}
-             value={formik.values.status}
-          >
-            <option>....</option>
-            <option>Trip not Completed</option>
-            <option>Trip Completed</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleInputPassword1">Members</label>
-          <input type="text" className="form-control" 
-             name="member"
-             onChange={formik.handleChange}
-             onBlur={formik.handleBlur}
-             value={formik.values.member}
+             onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.status}
+          required
           />
         </div>
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">Description</label>
           <input type="text" className="form-control" 
              name="description"
-             onChange={formik.handleChange}
-             onBlur={formik.handleBlur}
-             value={formik.values.description}
+             onChange={handleChange}
+             onBlur={handleBlur}
+             value={values.description}
+             required
           />
         </div>
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">Upload Image</label>
           <input type="file" className="form-control" 
-             name="image"
-             onChange={formik.handleChange}
-             onBlur={formik.handleBlur}
-             value={formik.values.image}
+             name="filename"
+             onChange={(event) => handleImageChange(event, setFieldValue)}
+             onBlur={handleBlur}
+             required
+            
           />
+       
         </div>
         <div className="add_btn"><button type="submit" className="btn btn-primary">Add Trip</button></div>
 </div>

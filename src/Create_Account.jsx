@@ -18,7 +18,7 @@ const Register = async (data)=>{
      body:JSON.stringify(data),
      headers:{"Content-Type":"application/json",},
    });
-   navigate("/movielist");
+   navigate("/trip_list");
  }
 
   return (
@@ -54,7 +54,30 @@ const Register = async (data)=>{
       onBlur={formik.handleBlur}
       value={formik.values.confirm_pass} className="form-control" placeholder="Confirm Password" />
       </div>
-      <button type="submit" className="btn btn-primary">Register</button>
+
+
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Create your Account Successfully
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary " style={{backgroundColor:"green"}} data-dismiss="modal">Ok</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+      <button type="submit" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Register</button>
 
     </form>
   );
