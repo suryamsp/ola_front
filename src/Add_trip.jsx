@@ -95,6 +95,8 @@ export function Add_trip() {
        
         </div>
         <div className="add_btn"><button type="submit" className="btn btn-primary">Add Trip</button></div>
+        <div className="back_btn"><button onClick={()=>navigate(-1)} className="btn btn-secondary">Back</button></div>
+
 </div>
        
       

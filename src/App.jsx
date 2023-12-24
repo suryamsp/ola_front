@@ -22,6 +22,7 @@ export default function App() {
           <Route path="/admin_triplist" element={<><ProtectedAdminRouted><Nav_bar /><Triplist /></ProtectedAdminRouted></>} />
           <Route path="/update_trip" element={<><Nav_bar /><Update_trip /></>} />
           <Route path="/add_trip" element={<><Nav_bar /><Add_trip /></>} />
+          <Route path="/view" element={<><Nav_bar /><View /></> } />
 </Routes>
 </div>
 

@@ -82,6 +82,9 @@
     font-weight: bold;
     background-color: rgb(51, 181, 79);
   }
+  .btn-secondary{
+    width: 100%;
+  }
 
   .main_dev{
     margin: 50px 100px 100px 100px;
@@ -159,7 +162,7 @@
   }
 
   .add_btn{
-    margin-top: 37px;
+    margin-top: 30px;
   }
   .success_main_btn{
     display: flex;
@@ -175,6 +178,9 @@
   font-weight: bold;
   border-radius: 10px;
   }
+.back_btn{
+  margin-top: 10px;
+}
 
 @media only screen and (max-width:600px){
   .main_dev{
@@ -186,21 +192,19 @@
   }
   .login-right{
     background-color: white;
-    width: 500px;
+    width: 350px;
     height: 500px;
-    margin-top: 150px;
-    margin: 0px;
+    margin: 100px 0px 0px 0px;
     border-radius: 12px;
     box-shadow: 0 7px 15px 0 rgba(0, 0, 0, 0.2), 0 16px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .login{
   display: grid;
   justify-content: center;
-  align-items: center;
   background-image: url("./img/login1.jpg");
-  background-position: center;
+  background-position: left;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-position-x:26%;  
   height:1110px;
   
   
@@ -232,6 +236,7 @@ box-shadow: 0 17px 15px 0 rgba(0, 0, 0, 0.2), 0 16px 36px 0 rgba(0, 0, 0, 0.19);
   font-style: italic;
 }
 .add_con{
+  
   display: grid;
   justify-items: center;
 }
@@ -245,7 +250,41 @@ box-shadow: 0 17px 15px 0 rgba(0, 0, 0, 0.2), 0 16px 36px 0 rgba(0, 0, 0, 0.19);
 .btn-success{
   width: 100px;
 }
+.add_body,.add_body2{ 
+  width: 300px;
+}
+.btn1,.btn2{
+  width: 175px;
+  
+}
+.view_dev{
+  display: flex;
+  padding: 120px 0px 0px 0px;
+}
 
+.view_img{
+width: 370px;
+height: 270px;
+margin-bottom: 50px;
+
+}
+.view_dev{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.view-con2{
+ margin-left: 15px;
+  max-width:250px;
+}
+
+.view-body{
+  padding-left: 0px;
+}
+#route_tit{
+  margin-bottom: 45px;
+}
 
 
 }
