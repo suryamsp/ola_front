@@ -6,7 +6,6 @@ const navigate = useNavigate();
   const formik= useFormik({
     initialValues:{name:"",password:""},
     onSubmit: async (values)=>{
-   console.log(values);
     
 
 
@@ -18,8 +17,9 @@ const navigate = useNavigate();
       body: JSON.stringify(values),
      });
      const result= await data.json();
-     console.log(result);
+     
      localStorage.setItem("token",result.token);
+     console.log(values.name);
     navigate("/trip_list");
     },
   });
@@ -68,7 +68,7 @@ const navigate = useNavigate();
 
 
       <div>
-        <a className="creat-acc" href="" onClick={()=>navigate("/forget_password")} >Forget Password ?</a></div>
+        <button className="creat-acc" onClick={()=>navigate("/forget_password")} >Forget Password ?</button></div>
       <button type="submit" className="btn btn-primary">Login</button>
       <hr></hr>
       <div className="New-account">

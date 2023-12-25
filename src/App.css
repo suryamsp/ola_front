@@ -66,6 +66,8 @@
     color: red;
     margin-top: 20px;
     font-weight: bold;
+    background-color: white;
+    border: none;
 
   }
   .New-account{
@@ -104,6 +106,7 @@
     margin-top: 100px;
   }
   .card{
+    width: 23rem;
     box-shadow: 0 17px 15px 0 rgba(0, 0, 0, 0.2), 0 16px 36px 0 rgba(0, 0, 0, 0.19);
   }
   .logo{
@@ -285,6 +288,11 @@ margin-bottom: 50px;
 #route_tit{
   margin-bottom: 45px;
 }
-
+.card{
+  width: 20rem;
+}
+.card-img-top{
+  width: 319px;
+}
 
 }

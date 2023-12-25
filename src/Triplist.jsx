@@ -11,6 +11,8 @@ export function Triplist() {
 //  }
 //  useEffect(()=> getlist(),[]);
 
+
+
  const list=[{
   "_id": {
     "$oid": "658646281e3ff806fc1a83c5"
@@ -65,14 +67,14 @@ export function Triplist() {
      <div className="main_dev">
       
               {list.map((data, index) => (     
-        <div key={index}   className="card" style={{ width: "23rem" }}>
+        <div key={index}   className="card">
         <img src={data.image} className="card-img-top" alt="Thirupathi" />
         <div className="card-body">
           <h5 className="card-title">{data.name}</h5>
           <p className="card-text">{
             data.description
           }</p>
-          <a href="#" className="btn btn-primary" >{data.status}</a>
+          <button style={{ backgroundColor: data.status == "Trip Completed" ? "green" : "brown" }} className="btn btn-primary" >{data.status}</button>
         </div>
       </div>
     

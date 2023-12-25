@@ -3,12 +3,21 @@ import Button from '@mui/material/Button';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 
 
-export function Nav_bar({mode,setmode,sty}){
+export function Nav_bar(){
 
+  const [name,setname]=useState();
   const navigate = useNavigate();
+
+  const getname=()=>{
+    fetch ("http://localhost:4000/addlist")
+    .then((data)=> data.json())
+    .then ((list)=> setname(list));
+   }
+   useEffect(()=> getname());
 
   function Close(e) {
     // check if window is small enough so dropdown is created
@@ -33,7 +42,7 @@ export function Nav_bar({mode,setmode,sty}){
         <div className="collapse navbar-collapse justify-content-end " id="navbarNavAltMarkup">
           <div className="navbar-nav"  >
             {/* <a className="nav-link js-scroll-trigger text-white"  href=""   onClick={(e)=>{Close(e),navigate(-1)}}>HOME</a> */}
-          
+          {/* <p style={{color:"white"}}>Hi, <p>{name.name}</p></p> */}
           
             
           </div>
