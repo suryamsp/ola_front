@@ -51,6 +51,7 @@ function ProtectedAdminRouted({children}){
       <div style={{marginTop:"100px"}} className="success_main_btn">
      <div> <button className="success_btn"  href="" onClick={()=>navigate("/add_trip")}>ADD</button></div>
    <div>   <button className="success_btn" href=""  onClick={()=> navigate("/update_trip")}>UPDATE</button></div>
+   <div> <button className="success_btn"  href="" onClick={()=>navigate("/view")}>View</button></div>
       </div>
       {children}
     </section>
