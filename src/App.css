@@ -1,7 +1,7 @@
 .login{
     display: flex;
     justify-content: flex-end;
-    background-image: url("./img/login1.jpg");
+    background-image: url("/img/login1.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -77,14 +77,14 @@
   a{
     text-decoration: none !important;
   }
-  .btn-primary{
+  .btn-click{
     width: 100%;
     margin-top: 10px;
     height: 40px;
     font-weight: bold;
     background-color: rgb(51, 181, 79);
   }
-  .btn-secondary{
+  .btn-sec-click{
     width: 100%;
   }
 
@@ -184,6 +184,37 @@
 .back_btn{
   margin-top: 10px;
 }
+.like_btn_div{
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.cardStyles  {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  background-color: #fff;
+}
+.titleStyles {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+.contentStyles{
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+
+
+
+
+
+
 
 @media only screen and (max-width:600px){
   .main_dev{
@@ -204,7 +235,7 @@
 .login{
   display: grid;
   justify-content: center;
-  background-image: url("./img/login1.jpg");
+  background-image: url("/img/login1.jpg");
   background-position: left;
   background-repeat: no-repeat;
   background-position-x:26%;  

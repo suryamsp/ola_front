@@ -12,12 +12,12 @@ export function Nav_bar(){
   const [name,setname]=useState();
   const navigate = useNavigate();
 
-  const getname=()=>{
-    fetch ("http://localhost:4000/addlist")
-    .then((data)=> data.json())
-    .then ((list)=> setname(list));
-   }
-   useEffect(()=> getname());
+  // const getname=()=>{
+  //   fetch ("http://localhost:4000/addlist")
+  //   .then((data)=> data.json())
+  //   .then ((list)=> setname(list));
+  //  }
+  //  useEffect(()=> getname());
 
   function Close(e) {
     // check if window is small enough so dropdown is created
@@ -41,8 +41,12 @@ export function Nav_bar(){
         </button>
         <div className="collapse navbar-collapse justify-content-end " id="navbarNavAltMarkup">
           <div className="navbar-nav"  >
-            {/* <a className="nav-link js-scroll-trigger text-white"  href=""   onClick={(e)=>{Close(e),navigate(-1)}}>HOME</a> */}
-          {/* <p style={{color:"white"}}>Hi, <p>{name.name}</p></p> */}
+           <div>
+          
+           <button type="button" class="btn btn-link text-white font-weight-bold" onClick={()=>navigate("/add_trip")}>ADD</button>
+           <button type="button" class="btn btn-link text-white font-weight-bold" onClick={()=>navigate("/members")}>MEMBERS</button>
+           <button type="button" class="btn btn-link text-white font-weight-bold" onClick={()=>navigate("/notes")}>NOTES</button>
+           </div>
           
             
           </div>

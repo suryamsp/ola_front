@@ -1,0 +1,28 @@
+[{
+  "_id": {
+    "$oid": "658b2ce131f9da25a1b71634"
+  },
+  "trip_name": "Thirupathi",
+  "city": "andhara",
+  "str_date": "2023-11-29",
+  "end_date": "2023-12-01",
+  "route": "channai",
+  "website": "'poiuhghjk",
+  "budjet": "500",
+  "member": "suryya",
+  "command": "no"
+},
+{
+  "_id": {
+    "$oid": "658dc592929b891954287cfa"
+  },
+  "trip_name": "thiruchendur",
+  "city": "OIGU",
+  "str_date": "2023-12-21",
+  "end_date": "2023-12-27",
+  "route": "'[PIOUIUIF",
+  "website": "puiuu",
+  "budjet": "56",
+  "member": ";ohight",
+  "command": ";oiut"
+}]

@@ -1,14 +1,18 @@
 import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 export function Update_trip() {
 
   const navigate = useNavigate();
 
+  const { url } = useParams();
+  // console.log(url);
+
    const formik= useFormik({
     initialValues:{
-      trip_name:"",
+      trip_name:url,
       city:"",
       str_date:"",
       end_date:"",
@@ -18,7 +22,6 @@ export function Update_trip() {
       status:"Trip Completed",
       member:"",
       command:"",
-      image:"",
   },
   onSubmit:(add)=>{Updatetrip(add);
   },
@@ -33,11 +36,22 @@ export function Update_trip() {
      });
      navigate("/trip_list");
    }
-
+  
   return (
     <div className="add_con">
       <form onSubmit={formik.handleSubmit} className="Add_page">
         <div className="add_body">
+        <div className="form-group">
+          <label htmlFor="exampleInputPassword1">Trip Name</label>
+          <input type="text" 
+          className="form-control"
+          name="trip_name"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.trip_name}
+    
+          />
+        </div>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">City/State</label>
           <input type="text" className="form-control" 
@@ -132,8 +146,8 @@ export function Update_trip() {
           />
         </div>
 
-        <div className="add_btn"><button type="submit" className="btn btn-primary">Update Trip</button></div>
-        <div style={{marginBottom:"30px"}}className="back_btn"><button onClick={()=>navigate(-1)} className="btn btn-secondary">Back</button></div>
+        <div className="add_btn"><button type="submit" className="btn btn-primary btn_click">Update Trip</button></div>
+        <div style={{marginBottom:"30px"}}className="back_btn"><button onClick={()=>navigate(-1)} className="btn btn-secondary btn-sec-click">Back</button></div>
 </div>
        
       

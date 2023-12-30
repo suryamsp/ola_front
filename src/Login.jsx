@@ -59,7 +59,7 @@ const navigate = useNavigate();
         Login Successfully
       </div>
       <div className="modal-footer">
-        <button type="button" className="btn btn-secondary " data-toggle="modal" data-target="#exampleModalCenter" style={{backgroundColor:"green"}} data-dismiss="modal">Ok</button>
+        <button type="button" className="btn btn-secondary btn-sec-click " data-toggle="modal" data-target="#exampleModalCenter" style={{backgroundColor:"green"}} data-dismiss="modal">Ok</button>
         
       </div>
     </div>
@@ -69,10 +69,10 @@ const navigate = useNavigate();
 
       <div>
         <button className="creat-acc" onClick={()=>navigate("/forget_password")} >Forget Password ?</button></div>
-      <button type="submit" className="btn btn-primary">Login</button>
+      <button type="submit" className="btn btn-primary btn_click">Login</button>
       <hr></hr>
       <div className="New-account">
-        <img type="button" className="login-goo" src="./img/google.png"></img>
+        <img type="button" className="login-goo" src="/img/google.png"></img>
       </div>
 
       

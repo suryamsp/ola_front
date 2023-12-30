@@ -30,7 +30,7 @@ export function Admin() {
       value={formik.values.key}
       
       placeholder="Secret Key" />
-      <button type="submit" className="btn btn-primary" style={{ backgroundColor: "rgb(195, 74, 74)" }}>Submit</button>
+      <button type="submit" className="btn btn-primary btn_click" style={{ backgroundColor: "rgb(195, 74, 74)" }}>Submit</button>
 
     </form>
   );

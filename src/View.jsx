@@ -1,7 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 export function View() {
 const navigate  = useNavigate();
+const { url } = useParams();
+const [moviepage, setmoviepage] = useState({});
+useEffect(()=>{ 
+  fetch(`http://localhost:4000/Triplist/${url}`)
+   .then((data) => data.json())
+   .then((mvs) => console.log(mvs));},[url]);
 
   return (
     <div className="view_dev">
@@ -37,7 +44,7 @@ const navigate  = useNavigate();
         </div>
 
       </div>
-      <div style={{marginBottom:"20px"}}className="back_btn"><button onClick={()=>navigate(-1)} className="btn btn-secondary">Back</button></div>
+      <div style={{marginBottom:"20px"}}className="back_btn"><button onClick={()=>navigate(-1)} className="btn btn-secondary btn-sec-click">Back</button></div>
     </div>
   );
 }

@@ -15,7 +15,7 @@ export function Forget() {
         <label htmlFor="exampleInputPassword1">Confirm Password</label>
         <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Confirm Password" />
       </div>
-      <button type="submit" className="btn btn-primary">Update</button>
+      <button type="submit" className="btn btn-primary btn_click">Update</button>
 
     </form>
   );

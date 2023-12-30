@@ -70,14 +70,14 @@ const Register = async (data)=>{
         Create your Account Successfully
       </div>
       <div className="modal-footer">
-        <button type="button" className="btn btn-secondary " style={{backgroundColor:"green"}} data-dismiss="modal">Ok</button>
+        <button type="button" className="btn btn-secondary btn-sec-click " style={{backgroundColor:"green"}} data-dismiss="modal">Ok</button>
         
       </div>
     </div>
   </div>
 </div>
 
-      <button type="submit" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Register</button>
+      <button type="submit" className="btn btn-primary btn_click" data-toggle="modal" data-target="#exampleModalCenter">Register</button>
 
     </form>
   );
