@@ -49,9 +49,10 @@ const Register = async (data, url = "https://trip-backend-eight.vercel.app/signu
     if (!response.ok) {
  
       console.error(`Error: ${response.status} - ${response.statusText}`);
-       setValue(true);
+       
     } else {
       console.log("Registration successful");
+      setValue(true);
     }
   } catch (error) {
     // Handle network errors or other exceptions
