@@ -6,7 +6,7 @@ const navigate  = useNavigate();
 const { url } = useParams();
 const [moviepage, setmoviepage] = useState({});
 useEffect(()=>{ 
-  fetch(`http://localhost:4000/Triplist/${url}`)
+  fetch(`https://trip-backend-eight.vercel.app/Triplist/${url}`)
    .then((data) => data.json())
    .then((mvs) => console.log(mvs));},[url]);
 

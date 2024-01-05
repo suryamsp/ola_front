@@ -9,15 +9,18 @@ import { useEffect, useState } from 'react';
 
 export function Nav_bar(){
 
-  const [name,setname]=useState();
+  const [Admin, setAdmin] = useState(false);
   const navigate = useNavigate();
 
-  // const getname=()=>{
-  //   fetch ("http://localhost:4000/addlist")
-  //   .then((data)=> data.json())
-  //   .then ((list)=> setname(list));
-  //  }
-  //  useEffect(()=> getname());
+  const Logout=()=>{
+    localStorage.removeItem('token');
+    navigate('/login');
+  }
+
+useEffect(() => {
+  const key = localStorage.getItem("token");
+  setAdmin(key === "suryamsp");
+}, []);
 
   function Close(e) {
     // check if window is small enough so dropdown is created
@@ -42,10 +45,12 @@ export function Nav_bar(){
         <div className="collapse navbar-collapse justify-content-end " id="navbarNavAltMarkup">
           <div className="navbar-nav"  >
            <div>
-          
-           <button type="button" class="btn btn-link text-white font-weight-bold" onClick={()=>navigate("/add_trip")}>ADD</button>
-           <button type="button" class="btn btn-link text-white font-weight-bold" onClick={()=>navigate("/members")}>MEMBERS</button>
-           <button type="button" class="btn btn-link text-white font-weight-bold" onClick={()=>navigate("/notes")}>NOTES</button>
+           <button type="button" className="btn btn-link text-white font-weight-bold" onClick={()=>navigate("/trip_list")}>HOME</button>
+           <button type="button" className="btn btn-link text-white font-weight-bold" onClick={()=>navigate("/notes")}>NOTES</button>
+           <button type="button" className="btn btn-link text-white font-weight-bold" onClick={()=>Logout()}>LOGOUT</button>
+          {Admin &&  <button type="button" className="btn btn-link text-white font-weight-bold" onClick={()=>navigate("/add_trip")}>ADD</button>}
+          {Admin &&  <button type="button" className="btn btn-link text-white font-weight-bold" onClick={()=>navigate("/memberlist")}>MEMBERS</button>}
+         
            </div>
           
             

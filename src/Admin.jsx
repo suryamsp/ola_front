@@ -9,13 +9,12 @@ export function Admin() {
     initialValues:{key:""},
     onSubmit:(keys)=>{
       if( (keys.key) === '4076'){
-        localStorage.setItem("key","suryamsp");
-        navigate("/admin_triplist");
+        localStorage.setItem("token","suryamsp");
+        navigate("/trip_list");
       }
     }
 
     });
-
 
 
 

@@ -9,7 +9,7 @@ const navigate = useNavigate();
     
 
 
-    const data = await fetch("http://localhost:4000/login" ,{
+    const data = await fetch("https://trip-backend-eight.vercel.app/login" ,{
        method:"POST",
        
        headers:{"Content-Type":"application/json",
@@ -19,7 +19,6 @@ const navigate = useNavigate();
      const result= await data.json();
      
      localStorage.setItem("token",result.token);
-     console.log(values.name);
     navigate("/trip_list");
     },
   });
@@ -32,7 +31,8 @@ const navigate = useNavigate();
         name="name"
          onChange={formik.handleChange}
          onBlur={formik.handleBlur}
-         value={formik.values.name} aria-describedby="emailHelp" placeholder="Enter User Name" />
+         value={formik.values.name} aria-describedby="emailHelp" placeholder="Enter User Name" 
+         required/>
       </div>
       <div className="form-group">
         <label htmlFor="exampleInputPassword1">Password</label>
@@ -42,11 +42,12 @@ const navigate = useNavigate();
          onChange={formik.handleChange}
          onBlur={formik.handleBlur}
          value={formik.values.password}
-         placeholder="Password" />
+         placeholder="Password" 
+         required/>
       </div>
 
 
-      <div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div className="modal-dialog modal-dialog-centered" role="document">
     <div className="modal-content">
       <div className="modal-header">

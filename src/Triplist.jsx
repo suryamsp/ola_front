@@ -14,44 +14,44 @@ export function Triplist() {
 
   const [tripList, setTripList] = useState([]);
   const [updateList, setUpdateList] = useState();
+  const [Admin, setAdmin] = useState(false);
   
- const [state,setstate]= useState(false);
+  useEffect(() => {
+    const key = localStorage.getItem("token");
+    setAdmin(key === "suryamsp");
+  }, []);
+  
 
  const getlist = () => {
-  fetch("http://localhost:4000/Triplist")
+  fetch("https://trip-backend-eight.vercel.app/Triplist")
     .then((data) => data.json())
     .then((list) => setTripList(list))
     .catch((error) => console.error("Error fetching Triplist:", error));
 };
 
 const getupdatelist = () => {
-  fetch("http://localhost:4000/Updatelist")
+  fetch("https://trip-backend-eight.vercel.app/Updatelist")
     .then((data) => data.json())
     .then((list) => setUpdateList(list))
     .catch((error) => console.error("Error fetching Updatelist:", error));
 };
 
+
 useEffect(() => {
   getlist();
   getupdatelist();
+
 }, []);
 
 
-const updatedata=[{
-  "_id": {
-    "$oid": "658b2ce131f9da25a1b71634"
-  },
-  "trip_name": "Thirupathi",
-  "city": "andhara",
-  "str_date": "2023-11-29",
-  "end_date": "2023-12-01",
-  "route": "channai",
-  "website": "'poiuhghjk",
-  "budjet": "500",
-  "member": "suryya",
-  "command": "no"
-}];
 
+
+
+const deletelist=(name)=>{
+  fetch(`https://trip-backend-eight.vercel.app/${name}`,{
+    method:"delete"
+  }).then(()=>getlist());
+}
 
 function ButtonDisable(data) {
   let result = true;
@@ -74,9 +74,10 @@ function ButtonDisable(data) {
    <div>
      <div className="main_dev">
       
-              {tripList.map((data,index) => (     
+              {tripList && tripList.map((data,index) => (     
         <div  
         key={index}
+        name={data.trip_name}
         className="card">
         <img src={data.image} className="card-img-top" alt="Thirupathi" />
         <div className="card-body">
@@ -85,8 +86,8 @@ function ButtonDisable(data) {
             data.description
           }</p>
           <div className="like_btn_div"><Counter /> 
-          <div>{<IconButton color="primary" onClick={()=> navigate(`/update_trip/${data.trip_name}`)}><EditIcon/></IconButton>}
-          {<IconButton sx={{ marginLeft: "auto" }}color="error" onClick={()=> deletemovie(mv.id)}><DeleteIcon/></IconButton>}</div>
+          <div>{Admin && <IconButton color="primary" onClick={()=> navigate(`/update_trip/${data.trip_name}`)}><EditIcon/></IconButton>}
+          {Admin && <IconButton sx={{ marginLeft: "auto" }}color="error" onClick={()=> deletelist(data.trip_name)}><DeleteIcon/></IconButton>}</div>
           
           </div>
           <button style={{backgroundColor: ButtonDisable(data)? "red" : " green"}} disabled={ButtonDisable(data)} className="btn btn-primary btn_click"  onClick={()=>{navigate(`/trip_list/${data.trip_name}`)}}
