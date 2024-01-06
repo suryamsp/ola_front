@@ -24,7 +24,7 @@ const navigate =  useNavigate();
 
 <Routes>
           <Route path="*" element={<Login_page />} />
-          <Route path="/trip_list" element={<><ProtectedRouted><Nav_bar  /><Triplist /></ProtectedRouted></>} />         
+          <Route path="/trip_list" element={<><Nav_bar  /><ProtectedRouted><Triplist /></ProtectedRouted></>} />         
           <Route path="/update_trip/:url" element={<><Nav_bar /><Update_trip /></>} />
           <Route path="/trip_list/add_trip" element={<><Nav_bar /><Add_trip /></>} />
           <Route path="/view/:url" element={<><Nav_bar /><View /></> } />
