@@ -97,7 +97,7 @@ function ButtonDisable(data) {
           {Admin && <IconButton sx={{ marginLeft: "auto" }}color="error" onClick={()=> deletelist(data.trip_name)}><DeleteIcon/></IconButton>}</div>
           
           </div>
-          <button style={{backgroundColor: ButtonDisable(data)? "red" : " green"}} disabled={ButtonDisable(data)} className="btn btn-primary btn_click"  onClick={()=>{navigate(`/trip_list/${data.trip_name}`)}}
+          <button style={{backgroundColor: ButtonDisable(data)? "red" : " green"}} disabled={ButtonDisable(data)} className="btn btn-primary btn_click"  onClick={()=>{navigate(`/view/${data.trip_name}`)}}
            >{ButtonDisable(data)? "Trip Not Completed" : "Trip Completed"}</button>
         </div>
       </div>
