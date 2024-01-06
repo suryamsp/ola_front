@@ -1,14 +1,14 @@
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react'
 import { Login_page } from './Login_page';
-import { Nav_bar } from "./Nav_bar";
-import { View } from "./View";
+import { Nav_bar } from "./sub_folder/Nav_bar";
+import { View } from "./sub_folder/View";
 
-import { Triplist } from "./Triplist";
-import { Update_trip } from "./Update_trip";
+import { Triplist } from "./sub_folder/Triplist";
+import { Update_trip } from "./sub_folder/Update_trip";
 import { Add_trip } from "./Add_trip";
-import { Notes } from "./notes";
-import { Test } from "./test";
+import { Notes } from "./sub_folder/notes";
+import { Test } from "./sub_folder/test";
 import {  Memberlist } from "./member";
 
 
@@ -26,7 +26,7 @@ const navigate =  useNavigate();
           <Route path="*" element={<Login_page />} />
           <Route path="/trip_list" element={<><ProtectedRouted><Nav_bar  /><Triplist /></ProtectedRouted></>} />         
           <Route path="/update_trip/:url" element={<><Nav_bar /><Update_trip /></>} />
-          <Route path="/add_trip" element={<><Nav_bar /><Add_trip /></>} />
+          <Route path="/trip_list/add_trip" element={<><Nav_bar /><Add_trip /></>} />
           <Route path="/view/:url" element={<><Nav_bar /><View /></> } />
           <Route path="/notes" element={<><Nav_bar /><Notes /></> } />
           <Route path="/memberlist" element={<><Nav_bar /><Memberlist /></> } />

@@ -48,7 +48,7 @@ useEffect(() => {
            <button type="button" className="btn btn-link text-white font-weight-bold" onClick={()=>navigate("/trip_list")}>HOME</button>
            <button type="button" className="btn btn-link text-white font-weight-bold" onClick={()=>navigate("/notes")}>NOTES</button>
            <button type="button" className="btn btn-link text-white font-weight-bold" onClick={()=>Logout()}>LOGOUT</button>
-          {Admin &&  <button type="button" className="btn btn-link text-white font-weight-bold" onClick={()=>navigate("/add_trip")}>ADD</button>}
+          {Admin &&  <button type="button" className="btn btn-link text-white font-weight-bold" onClick={()=>navigate("/trip_list/add_trip")}>ADD</button>}
           {Admin &&  <button type="button" className="btn btn-link text-white font-weight-bold" onClick={()=>navigate("/memberlist")}>MEMBERS</button>}
          
            </div>
