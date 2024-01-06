@@ -45,11 +45,11 @@ useEffect(() => {
         <div className="collapse navbar-collapse justify-content-end " id="navbarNavAltMarkup">
           <div className="navbar-nav"  >
            <div className='nav_content'>
-           <button type="button" className="nav-link text-white font-weight-bold" onClick={()=>navigate("/trip_list")}>HOME</button>
-           <button type="button" className="nav-link  text-white font-weight-bold" onClick={()=>navigate("/notes")}>NOTES</button>
-           <button type="button" className="nav-link text-white font-weight-bold" onClick={()=>Logout()}>LOGOUT</button>
-          {Admin &&  <button type="button" className="nav-link  text-white font-weight-bold" onClick={()=>navigate("/trip_list/add_trip")}>ADD</button>}
-          {Admin &&  <button type="button" className="nav-link  text-white font-weight-bold" onClick={()=>navigate("/memberlist")}>MEMBERS</button>}
+           <button type="button" className="nav-link text-white font-weight-bold" onClick={(e)=>{navigate("/trip_list"),Close(e)}}>HOME</button>
+           <button type="button" className="nav-link  text-white font-weight-bold" onClick={(e)=>{navigate("/notes"),Close(e)}}>NOTES</button>
+           <button type="button" className="nav-link text-white font-weight-bold" onClick={(e)=>{Logout(),Close(e)}}>LOGOUT</button>
+          {Admin &&  <button type="button" className="nav-link  text-white font-weight-bold" onClick={(e)=>{navigate("/trip_list/add_trip"),Close(e)}}>ADD</button>}
+          {Admin &&  <button type="button" className="nav-link  text-white font-weight-bold" onClick={(e)=>{navigate("/memberlist"),Close(e)}}>MEMBERS</button>}
          
            </div>
           
