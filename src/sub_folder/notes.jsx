@@ -61,22 +61,32 @@ useEffect(() => {
     }
   };
 
-  const getNote = () => {
-    fetch('https://trip-backend-eight.vercel.app/Addnotes')
-      .then((data) => data.json())
-      .then((list) => setNote(list))
-      .catch((error) => console.error('Error fetching Triplist:', error));
+  const getNote = async () => {
+    try {
+      const response = await fetch('https://trip-backend-eight.vercel.app/Addnotes');
+      const list = await response.json();
+      setNote(list);
+    } catch (error) {
+      console.error('Error fetching Triplist:', error);
+    }
   };
+  
 
   useEffect(() => {
     getNote();
   }, []);
 
-  const deleteNote = (title) => {
-    fetch(`https://trip-backend-eight.vercel.app/notes/${title}`, {
-      method: 'DELETE',
-    }).then(() => getNote());
+  const deleteNote = async (title) => {
+    try {
+      await fetch(`https://trip-backend-eight.vercel.app/notes/${title}`, {
+        method: 'DELETE',
+      });
+      await getNote();
+    } catch (error) {
+      console.error('Error deleting note:', error);
+    }
   };
+  
 
   const handleEditClick = (data) => {
     setDetail(data);

@@ -1,15 +1,15 @@
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react'
-import { Login_page } from './Login_page';
+import { Login_page } from './sub_folder/Login_page';
 import { Nav_bar } from "./sub_folder/Nav_bar";
 import { View } from "./sub_folder/View";
 
 import { Triplist } from "./sub_folder/Triplist";
 import { Update_trip } from "./sub_folder/Update_trip";
-import { Add_trip } from "./Add_trip";
+import { Add_trip } from "./sub_folder/Add_trip";
 import { Notes } from "./sub_folder/notes";
-import { Test } from "./sub_folder/test";
-import {  Memberlist } from "./member";
+
+import {  Memberlist } from "./sub_folder/member";
 
 
 
@@ -30,7 +30,7 @@ const navigate =  useNavigate();
           <Route path="/view/:url" element={<><Nav_bar /><View /></> } />
           <Route path="/notes" element={<><Nav_bar /><Notes /></> } />
           <Route path="/memberlist" element={<><Nav_bar /><Memberlist /></> } />
-          <Route path="/test" element={<Test /> } />
+          
 </Routes>
 </div>
 

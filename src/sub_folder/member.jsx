@@ -15,12 +15,15 @@ export function Memberlist() {
   const [login, loginList] = useState([]);
 
 
- const getloginlist = () => {
-  fetch("https://trip-backend-eight.vercel.app/member")
-    .then((data) => data.json())
-    .then((list) => loginList(list))
-    .catch((error) => console.error("Error fetching Triplist:", error));
-};
+  const getloginlist = async () => {
+    try {
+      const response = await fetch("https://trip-backend-eight.vercel.app/member");
+      const list = await response.json();
+      loginList(list);
+    } catch (error) {
+      console.error("Error fetching Triplist:", error);
+    }
+  };
 
 
 
