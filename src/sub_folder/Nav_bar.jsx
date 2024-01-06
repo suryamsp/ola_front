@@ -36,7 +36,7 @@ useEffect(() => {
       <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top"   >
       <div id="navbar" className="container-fluid"> 
    <div>
-   <img className='logo' src='./img/n_name.png'></img>
+   <img className='logo' src='..\img\n_name.png'></img>
       {/* <img className='logo1' src='./img/n_logo.png'></img> */}
    </div>
         <button className="navbar-toggler"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="true" aria-label="Toggle navigation">

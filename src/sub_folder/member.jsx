@@ -4,7 +4,7 @@ import { Counter } from "./Counter";
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Upcoming } from "@mui/icons-material";
+
 
 
 
@@ -32,6 +32,17 @@ useEffect(() => {
 
 }, []);
 
+const deletemember = async (title) => {
+  try {
+    await fetch(`https://trip-backend-eight.vercel.app/member/${title}`, {
+      method: 'DELETE',
+    });
+    await getloginlist();
+  } catch (error) {
+    console.error('Error deleting note:', error);
+  }
+};
+
   return (
    <div>
      <div className="member_dev">
@@ -43,6 +54,9 @@ useEffect(() => {
           <h5 className="card-title">NAME:  {data.username}</h5>
           <p className="card-text">EMAIL:  {data.Email}</p>
         </div>
+        <IconButton sx={{ marginLeft: 'auto' }} color="error" onClick={() => deletemember(data.username)}>
+                    <DeleteIcon />
+                  </IconButton>
       </div>
     
         ))}
