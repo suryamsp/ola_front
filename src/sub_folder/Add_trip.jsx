@@ -57,9 +57,8 @@ export function Add_trip() {
           name="trip_name"
           onChange={handleChange}
           onBlur={handleBlur}
-          value={values.trip_name}
+          value={values.trip_name.toUpperCase()}
           required
-          style={{ textTransform: 'uppercase' }}
           />
         </div>
       
