@@ -59,6 +59,7 @@ export function Add_trip() {
           onBlur={handleBlur}
           value={values.trip_name}
           required
+          style={{ textTransform: 'uppercase' }}
           />
         </div>
       
