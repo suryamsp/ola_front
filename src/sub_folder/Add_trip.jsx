@@ -18,6 +18,9 @@ export function Add_trip() {
   onSubmit:(add)=>{Addtrip(add);
   },
    });
+  useEffect(() => {
+  setFieldValue('trip_name', values.trip_name.toUpperCase());
+}, []);
 
    const handleImageChange = (event, setFieldValue) => {
     const file = event.currentTarget.files[0];
@@ -57,7 +60,7 @@ export function Add_trip() {
           name="trip_name"
           onChange={handleChange}
           onBlur={handleBlur}
-          value={values.trip_name.toUpperCase()}
+          value={values.trip_name}
           required
           />
         </div>
