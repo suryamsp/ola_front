@@ -18,6 +18,7 @@ export function Add_trip() {
   onSubmit:(add)=>{Addtrip(add);
   },
    });
+  
 
    const handleImageChange = (event, setFieldValue) => {
     const file = event.currentTarget.files[0];
@@ -51,7 +52,7 @@ export function Add_trip() {
       <form onSubmit={handleSubmit} className="Add_page">
         <div className="add_body">
           <div className="form-group">
-          <label htmlFor="exampleInputPassword1">Trip Name</label>
+          <label >Trip Name</label>
           <input type="text" 
           className="form-control"
           name="trip_name"
