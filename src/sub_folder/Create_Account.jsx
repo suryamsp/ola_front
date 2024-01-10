@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as Yup from "yup";
+import { API } from "./Api";
 
 
 
@@ -36,7 +36,7 @@ const handleNewPasswordChange = (event) => {
   formik.setFieldValue("newpassword", ''); 
 };
 
-const Register = async (data, url = "https://trip-backend-eight.vercel.app/signup", method = "POST") => {
+const Register = async (data, url = `${API}/signup`, method = "POST") => {
   try {
     const response = await fetch(url, {
       method: method,

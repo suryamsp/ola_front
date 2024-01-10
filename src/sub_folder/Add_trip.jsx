@@ -1,6 +1,7 @@
 import { useFormik,Formik, Form, Field } from "formik";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API } from "./Api";
 
 
 export function Add_trip() {
@@ -35,7 +36,7 @@ export function Add_trip() {
   
   const Addtrip = async (add) => {
     try {
-      await fetch("https://trip-backend-eight.vercel.app/Add_trip", {
+      await fetch(`${API}/Add_trip`, {
         method: "POST",
         body: JSON.stringify(add),
         headers: { "Content-Type": "application/json" },

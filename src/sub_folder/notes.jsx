@@ -5,6 +5,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
+import { API } from "./Api";
 
 export function Notes() {
   const [note, setNote] = useState([]);
@@ -36,7 +37,7 @@ useEffect(() => {
 
   const addNote = async (note) => {
     try {
-      await fetch('https://trip-backend-eight.vercel.app/Add_notes', {
+      await fetch(`${API}/Add_notes`, {
         method: 'POST',
         body: JSON.stringify(note),
         headers: { 'Content-Type': 'application/json' },
@@ -49,7 +50,7 @@ useEffect(() => {
 
   const editNote = async (note) => {
     try {
-      await fetch(`https://trip-backend-eight.vercel.app/notes/${detail.title}`, {
+      await fetch(`${API}/notes/${detail.title}`, {
         method: 'PUT',
         body: JSON.stringify(note),
         headers: { 'Content-Type': 'application/json' },
@@ -63,7 +64,7 @@ useEffect(() => {
 
   const getNote = async () => {
     try {
-      const response = await fetch('https://trip-backend-eight.vercel.app/Addnotes');
+      const response = await fetch(`${API}/Addnotes`);
       const list = await response.json();
       setNote(list);
     } catch (error) {
@@ -78,7 +79,7 @@ useEffect(() => {
 
   const deleteNote = async (title) => {
     try {
-      await fetch(`https://trip-backend-eight.vercel.app/notes/${title}`, {
+      await fetch(`${API}/notes/${title}`, {
         method: 'DELETE',
       });
       await getNote();

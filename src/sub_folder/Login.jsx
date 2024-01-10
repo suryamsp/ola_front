@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
+import { API } from "./Api";
 
 export function Login() {
 const navigate = useNavigate();
@@ -9,7 +10,7 @@ const navigate = useNavigate();
     
 
 
-    const data = await fetch("https://trip-backend-eight.vercel.app/login" ,{
+    const data = await fetch(`${API}/login` ,{
        method:"POST",
        
        headers:{"Content-Type":"application/json",

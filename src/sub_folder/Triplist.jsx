@@ -4,6 +4,7 @@ import { Counter } from "./Counter";
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { API } from "./Api";
 
 
 
@@ -33,11 +34,11 @@ export function Triplist() {
   };
   
   const getlist = async () => {
-    await fetchData("https://trip-backend-eight.vercel.app/Triplist", setTripList, "Triplist");
+    await fetchData(`${API}/Triplis`, setTripList, "Triplist");
   };
   
   const getupdatelist = async () => {
-    await fetchData("https://trip-backend-eight.vercel.app/Updatelist", setUpdateList, "Updatelist");
+    await fetchData(`${API}/Updatelist`, setUpdateList, "Updatelist");
   };
   
   useEffect(() => {
@@ -50,7 +51,7 @@ export function Triplist() {
 
 const deletelist = async (name) => {
   try {
-    await fetch(`https://trip-backend-eight.vercel.app/${name}`, {
+    await fetch(`${API}/${name}`, {
       method: 'DELETE',
     });
     await getlist();

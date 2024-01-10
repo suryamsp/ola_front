@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { API } from "./Api";
 
 export function View() {
 const navigate  = useNavigate();
@@ -19,10 +20,10 @@ const [tripView, setTripView] = useState([]);
   };
   
   const getview = async () => {
-    await fetchData(`https://trip-backend-eight.vercel.app/Triplist/${url}`, setTripView, "Triplist");
+    await fetchData(`${API}/Triplist/${url}`, setTripView, "Triplist");
   };
   const getupdateview = async () => {
-    await fetchData(`https://trip-backend-eight.vercel.app/Updatelist/${url}`, setUpdateView, "Updatelist");
+    await fetchData(`${API}/Updatelist/${url}`, setUpdateView, "Updatelist");
   };
   
 

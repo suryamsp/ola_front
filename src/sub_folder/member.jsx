@@ -4,6 +4,7 @@ import { Counter } from "./Counter";
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { API } from "./Api";
 
 
 
@@ -17,7 +18,7 @@ export function Memberlist() {
 
   const getloginlist = async () => {
     try {
-      const response = await fetch("https://trip-backend-eight.vercel.app/member");
+      const response = await fetch(`${API}/member`);
       const list = await response.json();
       loginList(list);
     } catch (error) {
@@ -34,7 +35,7 @@ useEffect(() => {
 
 const deletemember = async (title) => {
   try {
-    await fetch(`https://trip-backend-eight.vercel.app/member/${title}`, {
+    await fetch(`${API}/member/${title}`, {
       method: 'DELETE',
     });
     await getloginlist();
