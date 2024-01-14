@@ -10,6 +10,7 @@ import { Add_trip } from "./sub_folder/Add_trip";
 import { Notes } from "./sub_folder/notes";
 
 import {  Memberlist } from "./sub_folder/member";
+import YourComponent from "./sub_folder/test";
 
 
 
@@ -32,6 +33,7 @@ const navigate =  useNavigate();
           <Route path="/memberlist" element={<><Nav_bar /><Memberlist /></> } />
           
 </Routes>
+
 </div>
 
   );
