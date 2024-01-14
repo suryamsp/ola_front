@@ -106,7 +106,7 @@ useEffect(() => {
 
   return (
     <div style={{ marginTop: '100px' }}>
-{Admin && <button
+     <button
 style={{marginLeft:"20px"}}
         type="button"
         className="btn btn-primary font-weight-bold"
@@ -116,7 +116,7 @@ style={{marginLeft:"20px"}}
         onClick={handleAddClick} 
       >
         ADD NOTES
-      </button>}
+      </button>
       <div
         className="modal fade"
         id="exampleModal"
