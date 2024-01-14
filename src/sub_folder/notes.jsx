@@ -25,6 +25,7 @@ useEffect(() => {
     initialValues: {
       title: '',
       notes: '',
+      date:currentDate,
     },
     onSubmit: (values) => {
       if (detail) {
@@ -180,7 +181,7 @@ style={{marginLeft:"20px"}}
             <div key={index} className="cardStyles">
               <div className="titleStyles">{data.title}</div>
               <div className="contentStyles">
-                <p>{currentDate}</p>
+                <p>{data.date}</p>
                 {data.notes}
               </div>
               <div className="like_btn_div">
