@@ -34,7 +34,7 @@ export function Triplist() {
   };
   
   const getlist = async () => {
-    await fetchData(`${API}/Triplis`, setTripList, "Triplist");
+    await fetchData(`${API}/Triplist`, setTripList, "Triplist");
   };
   
   const getupdatelist = async () => {
