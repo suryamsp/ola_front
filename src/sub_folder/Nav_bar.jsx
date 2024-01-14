@@ -57,7 +57,7 @@ useEffect(() => {
   <div className="modal-dialog modal-dialog-centered" role="document">
     <div className="modal-content" >
       <div className="modal-body" >
-      <form class="was-validated" onSubmit={formik.handleSubmit} >
+      <form className="was-validated" onSubmit={formik.handleSubmit} >
           <div className="form-group">
             <label htmlFor="name" className="col-form-label">Secret Key</label>
             <input type="password" className="form-control"
@@ -68,7 +68,7 @@ useEffect(() => {
                    required
                    id="name"
                   />
-                  <div class="valid-feedback">
+                  <div className="valid-feedback">
                   {message && <span style={{ color: "red" }}>Invalid secret key</span>}
 
     </div>
