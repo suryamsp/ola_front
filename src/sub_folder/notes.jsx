@@ -148,6 +148,7 @@ style={{marginLeft:"20px"}}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.title}
+                    required 
                   />
                 </div>
                 <div className="form-group">
@@ -160,6 +161,7 @@ style={{marginLeft:"20px"}}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.notes}
+                    required 
                   />
                 </div>
                 <div className="modal-footer">
