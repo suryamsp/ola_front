@@ -78,9 +78,9 @@ useEffect(() => {
     getNote();
   }, []);
 
-  const deleteNote = async (title) => {
+  const deleteNote = async (data.title) => {
     try {
-      await fetch(`${API}/notes/${title}`, {
+      await fetch(`${API}/notes/${data.title}`, {
         method: 'DELETE',
       });
       await getNote();
