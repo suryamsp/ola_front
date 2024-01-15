@@ -1,7 +1,7 @@
 body {
   background-color: red; /* For browsers that do not support gradients */
   background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
-  background-opacity: 0.3;
+  background-opacity: 10%;
 }
 
 .login{
