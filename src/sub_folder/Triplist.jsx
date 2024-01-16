@@ -81,12 +81,33 @@ function ButtonDisable(data) {
   return (
    <div>
      <div className="main_dev">
-      
+    
+
               {tripList && tripList.map((data,index) => (     
         <div  
         key={index}
         name={data.trip_name}
         className="card">
+
+<div class="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">DELETE</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Confirm to Delete
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" onClick={()=> deletelist(data.trip_name)}>DELETE</button>
+      </div>
+    </div>
+  </div>
+</div>
         <img src={data.image} className="card-img-top" alt="Thirupathi" />
         <div className="card-body">
           <h5 className="card-title">{data.trip_name}</h5>
@@ -95,7 +116,7 @@ function ButtonDisable(data) {
           }</p>
           <div className="like_btn_div"><Counter /> 
           <div>{Admin && <IconButton color="primary" onClick={()=> navigate(`/update_trip/${data.trip_name}`)}><EditIcon/></IconButton>}
-          {Admin && <IconButton sx={{ marginLeft: "auto" }}color="error" onClick={()=> deletelist(data.trip_name)}><DeleteIcon/></IconButton>}</div>
+          {Admin && <IconButton sx={{ marginLeft: "auto" }}color="error" data-toggle="modal" data-target="#exampleModal" ><DeleteIcon/></IconButton>}</div>
           
           </div>
           <button style={{backgroundColor: ButtonDisable(data)? "red" : " green"}} disabled={ButtonDisable(data)} className="btn btn-primary btn_click"  onClick={()=>{navigate(`/view/${data.trip_name}`)}}

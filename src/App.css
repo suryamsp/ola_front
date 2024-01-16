@@ -217,7 +217,9 @@ body {
 .member_card{
   box-shadow: 0 17px 15px 0 rgba(0, 0, 0, 0.2), 0 16px 36px 0 rgba(0, 0, 0, 0.19);
   display: flex;
+  align-items: center;
   width:20rem;
+  border-radius: 30px;
   margin-bottom: 30px;
 
  
@@ -226,9 +228,12 @@ body {
 .member_dev{
   margin-top: 100px;
   padding-left: 40px;
+  display: grid;
+  justify-items: center;
 }
 .member_img{
   width: 100px;
+  border-radius: 30px 0px 0px 30px;
 }
 .nav_content{
   display:flex;
@@ -370,6 +375,13 @@ margin-bottom: 50px;
 .nav_content{
   display:flex;
   flex-direction: column;
+}
+.member_card{
+  width:24rem; 
+
+}
+.member_dev{
+  padding-left: 10px;
 }
 
 }

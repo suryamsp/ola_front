@@ -50,12 +50,31 @@ const deletemember = async (title) => {
       
               {login.map((data,index) => (     
         <div  key={index} className="member_card">
+          <div class="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">DELETE</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Confirm to Delete
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" onClick={() => deletemember(data.username)}>DELETE</button>
+      </div>
+    </div>
+  </div>
+</div>
         <div><img src="/img/member.jpg" className="member_img" /></div>
         <div className="card-body">
           <h5 className="card-title">NAME:  {data.username}</h5>
           <p className="card-text">EMAIL:  {data.Email}</p>
         </div>
-        <IconButton sx={{ marginLeft: 'auto' }} color="error" onClick={() => deletemember(data.username)}>
+        <IconButton sx={{ marginLeft: 'auto' }} color="error" data-toggle="modal" data-target="#exampleModal">
                     <DeleteIcon />
                   </IconButton>
       </div>

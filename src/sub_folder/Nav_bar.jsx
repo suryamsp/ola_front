@@ -20,7 +20,7 @@ export function Nav_bar(){
       if(modal_key === 'suryamsp'){
         navigate('/notes')
       }else{
-        setAdmin(true);
+        console.log('error');
       }
        
     }

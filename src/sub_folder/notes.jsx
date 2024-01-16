@@ -183,6 +183,25 @@ style={{marginLeft:"20px"}}
         {note &&
           note.map((data, index) => (
             <div key={index} className="cardStyles">
+              <div class="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">DELETE</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Confirm to Delete
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" onClick={() => deleteNote(data.title)}>DELETE</button>
+      </div>
+    </div>
+  </div>
+</div>
               <div className="titleStyles">{data.title}</div>
               <div className="contentStyles">
                 <p>{data.date}</p>
@@ -195,7 +214,7 @@ style={{marginLeft:"20px"}}
                   onClick={() => handleEditClick(data)}>
                     <EditIcon />
                   </IconButton>
-                  <IconButton sx={{ marginLeft: 'auto' }} color="error" onClick={() => deleteNote(data.title)}>
+                  <IconButton sx={{ marginLeft: 'auto' }} color="error" data-toggle="modal" data-target="#exampleModal">
                     <DeleteIcon />
                   </IconButton>
                 </div>}

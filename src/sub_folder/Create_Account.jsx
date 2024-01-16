@@ -33,7 +33,7 @@ const handleNewPasswordChange = (event) => {
   setNewPassword(event.target.value); 
   setPasswordsMatch(event.target.value === confirmPassword);
   formik.handleChange(event);
-  formik.setFieldValue("newpassword", ''); 
+  formik.setFieldValue("newpassword", event.target.value); 
 };
 
 const Register = async (data, url = `${API}/signup`, method = "POST") => {

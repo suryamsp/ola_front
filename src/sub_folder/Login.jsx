@@ -19,11 +19,11 @@ const formik = useFormik({
 
       // Parsing the JSON response
       const result = await response.json();
-      console.log(result.token);
+      console.log(result);
 
       // Uncomment the lines below if you want to handle the response further
-      // localStorage.setItem("token", result.token);
-      // navigate("/trip_list");
+      localStorage.setItem("token", result.token);
+      navigate("/trip_list");
     } catch (error) {
       console.error('Error during login:', error);
     }
