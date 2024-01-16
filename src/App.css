@@ -1,10 +1,7 @@
-body{
-  background-image: url('/img/login.jpg');
-background-position-y:75px ;
-  background-size: cover;
-  height:800px;
-  
-
+body {
+  background-color: red; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  background-opacity:0.1;
 }
 
 .login{
