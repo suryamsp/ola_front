@@ -4,25 +4,31 @@ import { API } from "./Api";
 
 export function Login() {
 const navigate = useNavigate();
-  const formik= useFormik({
-    initialValues:{name:"",password:""},
-    onSubmit: async (values)=>{
-    
+const formik = useFormik({
+  initialValues: { name: "", password: "" },
+  onSubmit: async (values) => {
+    try {
+      // Sending a POST request to the login endpoint
+      const response = await fetch(`${API}/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
 
+      // Parsing the JSON response
+      const result = await response.json();
+      console.log(result.token);
 
-    const data = await fetch(`${API}/login` ,{
-       method:"POST",
-       
-       headers:{"Content-Type":"application/json",
-      },
-      body: JSON.stringify(values),
-     });
-     const result= await data.json();
-     
-     localStorage.setItem("token",result.token);
-    navigate("/trip_list");
-    },
-  });
+      // Uncomment the lines below if you want to handle the response further
+      // localStorage.setItem("token", result.token);
+      // navigate("/trip_list");
+    } catch (error) {
+      console.error('Error during login:', error);
+    }
+  },
+});
 
   return (
     <form onSubmit={formik.handleSubmit} className="login-page">

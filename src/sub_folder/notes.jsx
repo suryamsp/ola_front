@@ -29,7 +29,8 @@ useEffect(() => {
     },
     onSubmit: (values) => {
       if (detail) {
-        editNote(values);
+        editNote({detail,values});
+        console.log(detail);
       } else {
         addNote(values);
       }
@@ -49,17 +50,29 @@ useEffect(() => {
     }
   };
 
-  const editNote = async (note) => {
+  const editNote = async ({detail,values}) => {
     try {
-      await fetch(`${API}/notes/${detail.title}`, {
+      await fetch(`${API}/edit/${detail.title}`, {
         method: 'PUT',
-        body: JSON.stringify(note),
+       
         headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
       });
       setDetail(null); // Reset detail after editing
       window.location.reload();
     } catch (error) {
       console.error('Error during fetch:', error);
+    }
+  };
+
+  const deleteNote = async (dtitle) => {
+    try {
+      await fetch(`${API}/delete/${dtitle}`, {
+        method: 'DELETE',
+      });
+      await getNote();
+    } catch (error) {
+      console.error('Error deleting note:', error);
     }
   };
 
@@ -78,21 +91,12 @@ useEffect(() => {
     getNote();
   }, []);
 
-  const deleteNote = async (title) => {
-    try {
-      await fetch(`${API}/notes/${title}`, {
-        method: 'DELETE',
-      });
-      await getNote();
-    } catch (error) {
-      console.error('Error deleting note:', error);
-    }
-  };
+
   
 
   const handleEditClick = (data) => {
     setDetail(data);
-    console.log(data);
+   
     formik.setValues({
       title: data.title,
       notes: data.notes,
@@ -138,7 +142,7 @@ style={{marginLeft:"20px"}}
             <div className="modal-body">
               <form>
                 <div className="form-group">
-                  <label for="recipient-name" className="col-form-label">
+                  <label htmlFor="recipient-name" className="col-form-label">
                     Title:
                   </label>
                   <input
@@ -148,10 +152,11 @@ style={{marginLeft:"20px"}}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.title}
+                    required
                   />
                 </div>
                 <div className="form-group">
-                  <label for="message-text" className="col-form-label">
+                  <label htmlFor="message-text" className="col-form-label">
                     Message:
                   </label>
                   <textarea
@@ -160,6 +165,7 @@ style={{marginLeft:"20px"}}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.notes}
+                    required
                   />
                 </div>
                 <div className="modal-footer">

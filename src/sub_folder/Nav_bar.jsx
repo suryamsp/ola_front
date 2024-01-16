@@ -15,6 +15,16 @@ export function Nav_bar(){
   const [message,setmessage]= useState(false)
     const navigate = useNavigate();
 
+    const Modalopen=()=>{
+      const modal_key = localStorage.getItem("token");
+      if(modal_key === 'suryamsp'){
+        navigate('/notes')
+      }else{
+        setAdmin(true);
+      }
+       
+    }
+
   const formik=useFormik({
     initialValues:{note_key:""},
     onSubmit:(values)=>{Notever(values)}
@@ -96,7 +106,8 @@ useEffect(() => {
     <div className="navbar-nav"  >
      <div className='nav_content'>
      <button type="button" className="nav-link text-white font-weight-bold" onClick={(e)=>{navigate("/trip_list"),Close(e)}}>HOME</button>
-     <button type="button" className="nav-link  text-white font-weight-bold" data-toggle="modal" data-target="#exampleModalCenter" onClick={(e)=>{Close(e)}}>NOTES</button>
+     <button type="button" className="nav-link  text-white font-weight-bold" 
+     data-toggle={Admin ? "" : "modal" } data-target={Admin ? "" : "#exampleModalCenter"} onClick={(e)=>{Close(e),Modalopen()}}>NOTES</button>
      <button type="button" className="nav-link text-white font-weight-bold"  onClick={(e)=>{Logout(),Close(e)}}>LOGOUT</button>
     {Admin &&  <button type="button" className="nav-link  text-white font-weight-bold" onClick={(e)=>{navigate("/trip_list/add_trip"),Close(e)}}>ADD</button>}
     {Admin &&  <button type="button" className="nav-link  text-white font-weight-bold" onClick={(e)=>{navigate("/memberlist"),Close(e)}}>MEMBERS</button>}
