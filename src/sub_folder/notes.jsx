@@ -183,7 +183,7 @@ style={{marginLeft:"20px"}}
         {note &&
           note.map((data, index) => (
             <div key={index} className="cardStyles">
-              <div class="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -214,7 +214,7 @@ style={{marginLeft:"20px"}}
                   onClick={() => handleEditClick(data)}>
                     <EditIcon />
                   </IconButton>
-                  <IconButton sx={{ marginLeft: 'auto' }} color="error" data-toggle="modal" data-target="#exampleModal">
+                  <IconButton sx={{ marginLeft: 'auto' }} color="error" data-toggle="modal" data-target="#exampleModalCenter">
                     <DeleteIcon />
                   </IconButton>
                 </div>}
