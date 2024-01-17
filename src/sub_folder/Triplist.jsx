@@ -81,16 +81,13 @@ function ButtonDisable(data) {
   return (
    <div>
      <div className="main_dev">
+      
     
 
-              {tripList && tripList.map((data,index) => (     
-        <div  
-        key={index}
-        name={data.trip_name}
-        className="card">
-
-<div class="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+              {tripList && tripList.map((data,index) => ( 
+              <div>
+              <div class="modal fade" id={`exampleModalCenters-${data.trip_name}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">DELETE</h5>
@@ -99,15 +96,19 @@ function ButtonDisable(data) {
         </button>
       </div>
       <div class="modal-body">
-        Confirm to Delete
+        Confirm to Delete <span className='span_dev'>{data.trip_name}</span> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger" onClick={()=> deletelist(data.trip_name)}>DELETE</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" onClick={()=> deletelist(data.trip_name)}>DELETE</button>
       </div>
     </div>
   </div>
 </div>
+        <div  
+        key={index}
+        name={data.trip_name}
+        className="card">
         <img src={data.image} className="card-img-top" alt="Thirupathi" />
         <div className="card-body">
           <h5 className="card-title">{data.trip_name}</h5>
@@ -116,17 +117,18 @@ function ButtonDisable(data) {
           }</p>
           <div className="like_btn_div"><Counter /> 
           <div>{Admin && <IconButton color="primary" onClick={()=> navigate(`/update_trip/${data.trip_name}`)}><EditIcon/></IconButton>}
-          {Admin && <IconButton sx={{ marginLeft: "auto" }}color="error" data-toggle="modal" data-target="#exampleModal" ><DeleteIcon/></IconButton>}</div>
+          {Admin && <IconButton sx={{ marginLeft: "auto" }}color="error" data-toggle="modal" data-target={`#exampleModalCenters-${data.trip_name}`} ><DeleteIcon/></IconButton>}</div>
           
           </div>
           <button style={{backgroundColor: ButtonDisable(data)? "red" : " green"}} disabled={ButtonDisable(data)} className="btn btn-primary btn_click"  onClick={()=>{navigate(`/view/${data.trip_name}`)}}
            >{ButtonDisable(data)? "Trip Not Completed" : "Trip Completed"}</button>
         </div>
       </div>
-    
+      </div>
         ))}
         </div>
    </div>
+  
 
   );
 }

@@ -49,9 +49,9 @@ const deletemember = async (title) => {
      <div className="member_dev">
       
               {login.map((data,index) => (     
-        <div  key={index} className="member_card">
-          <div class="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+        <div className="member_card">
+          <div class="modal fade" id={`exampleModalCentersss-${data.username}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">DELETE</h5>
@@ -60,11 +60,11 @@ const deletemember = async (title) => {
         </button>
       </div>
       <div class="modal-body">
-        Confirm to Delete
+        Confirm to Delete Members <span className='span_dev'>{data.username}</span> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger" onClick={() => deletemember(data.username)}>DELETE</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" onClick={() => deletemember(data.username)}>DELETE</button>
       </div>
     </div>
   </div>
@@ -74,7 +74,7 @@ const deletemember = async (title) => {
           <h5 className="card-title">NAME:  {data.username}</h5>
           <p className="card-text">EMAIL:  {data.Email}</p>
         </div>
-        <IconButton sx={{ marginLeft: 'auto' }} color="error" data-toggle="modal" data-target="#exampleModal">
+        <IconButton sx={{ marginLeft: 'auto' }} color="error" data-toggle="modal" data-target={`#exampleModalCentersss-${data.username}`}>
                     <DeleteIcon />
                   </IconButton>
       </div>

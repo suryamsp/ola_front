@@ -239,7 +239,11 @@ body {
   display:flex;
 }
 
-
+.span_dev{
+  font-weight: bold;
+  font-size: 20px;
+  color: red;
+}
 
 
 
