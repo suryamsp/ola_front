@@ -1,7 +1,7 @@
 body {
-  background-color: red; /* For browsers that do not support gradients */
-  background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
-  background-opacity:0.1;
+  background-image:url("/img/Grass.jpg"); /* For browsers that do not support gradients */
+  background-repeat: repeat;
+
 }
 
 .login{
@@ -245,6 +245,12 @@ body {
   color: red;
 }
 
+.left_side{
+  font-weight: bold;
+  font-size: 22px;
+  text-shadow: 1px 1px 1px rgb(32, 45, 224);
+}
+
 
 
 
@@ -365,10 +371,10 @@ margin-bottom: 50px;
   margin-bottom: 45px;
 }
 .card{
-  width: 20rem;
+  width: 23rem;
 }
 .card-img-top{
-  width: 319px;
+  width: 369px;
 }
 .creat-acc{
   margin-top:0px;

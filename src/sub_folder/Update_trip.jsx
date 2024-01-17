@@ -18,7 +18,6 @@ export function Update_trip() {
       str_date:"",
       end_date:"",
       route:"",
-      website:"",
       budjet:"",
       status:"Trip Completed",
       member:"",
@@ -96,16 +95,6 @@ export function Update_trip() {
              onChange={formik.handleChange}
              onBlur={formik.handleBlur}
              value={formik.values.route}
-             required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleInputPassword1">Website</label>
-          <input type="text" className="form-control"
-             name="website"
-             onChange={formik.handleChange}
-             onBlur={formik.handleBlur}
-             value={formik.values.website}
              required
           />
         </div>
