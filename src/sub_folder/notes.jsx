@@ -217,7 +217,7 @@ style={{marginLeft:"20px"}}
                   onClick={() => handleEditClick(data)}>
                     <EditIcon />
                   </IconButton>
-                  <IconButton sx={{ marginLeft: 'auto' }} color="error" data-toggle="modal" data-target={`#exampleModalCenterss-${data.title}`} >
+                  <IconButton sx={{ marginLeft: 'auto' }} color="error" data-toggle="modal" data-target="#exampleModal">
                     <DeleteIcon />
                   </IconButton>
                 </div>}
