@@ -14,6 +14,7 @@ export function Memberlist() {
   const navigate =useNavigate();
 
   const [login, loginList] = useState([]);
+  const [deletememdata, setDeletemendata]=useState();
 
 
   const getloginlist = async () => {
@@ -46,37 +47,38 @@ const deletemember = async (title) => {
 
   return (
    <div>
-     <div className="member_dev">
-      
-              {login.map((data,index) => (     
-        <div className="member_card">
-          <div class="modal fade" id={`exampleModalCentersss-${data.username}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">DELETE</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <div className="modal fade" id='memberModalCenter' tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog modal-dialog-centered" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">DELETE</h5>
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        Confirm to Delete Members <span className='span_dev'>{data.username}</span> 
+      <div className="modal-body">
+        Confirm to Delete Members <span className='span_dev'>{deletememdata}</span> 
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal" onClick={() => deletemember(data.username)}>DELETE</button>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={() => deletemember(deletememdata)}>DELETE</button>
       </div>
     </div>
   </div>
 </div>
+     <div className="member_dev">
+      
+              {login.map((data,index) => (     
+        <div className="member_card">
+
         <div><img src="/img/member.jpg" className="member_img" /></div>
         <div className="card-body">
           <h5 className="card-title">NAME:  {data.username}</h5>
           <p className="card-text">EMAIL:  {data.Email}</p>
+      
+                  <button type="button" className="btn btn-danger" data-toggle="modal" data-target='#memberModalCenter' onClick={()=>setDeletemendata(data.username)}>DELETE</button>
         </div>
-        <IconButton sx={{ marginLeft: 'auto' }} color="error" data-toggle="modal" data-target={`#exampleModalCentersss-${data.username}`}>
-                    <DeleteIcon />
-                  </IconButton>
+
       </div>
     
         ))}

@@ -10,6 +10,7 @@ import { API } from "./Api";
 export function Notes() {
   const [note, setNote] = useState([]);
   const [detail, setDetail] = useState(null);
+  const [ deletenotedata, setDeleteNotedata]= useState('')
   const navigate = useNavigate();
   const currentDate = format(new Date(), 'MMMM d, yyyy');
 
@@ -111,8 +112,31 @@ useEffect(() => {
     formik.resetForm();
   };
 
+
   return (
     <div style={{ marginTop: '100px' }}>
+
+<div  className="modal fade" id='notesModalCenters' tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog modal-dialog-centered" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">DELETE</h5>
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div className="modal-body">
+        Confirm to Delete Notes <span className='span_dev'>{deletenotedata}</span> 
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={() => deleteNote(deletenotedata)}>DELETE</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
      <button
 style={{marginLeft:"20px"}}
         type="button"
@@ -132,7 +156,7 @@ style={{marginLeft:"20px"}}
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog" role="document">
+        <div className="modal-dialog modal-dialog-centered" role="document">
           <div onSubmit={formik.handleSubmit} className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
@@ -186,25 +210,6 @@ style={{marginLeft:"20px"}}
         {note &&
           note.map((data, index) => (
             <div key={index} className="cardStyles">
-              <div  class="modal fade" id={`exampleModalCenterss-${data.title}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">DELETE</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Confirm to Delete Notes <span className='span_dev'>{data.title}</span> 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modals">Close</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal" onClick={() => deleteNote(data.title)}>DELETE</button>
-      </div>
-    </div>
-  </div>
-</div>
               <div className="titleStyles">{data.title}</div>
               <div className="contentStyles">
                 <p>{data.date}</p>
@@ -217,7 +222,7 @@ style={{marginLeft:"20px"}}
                   onClick={() => handleEditClick(data)}>
                     <EditIcon />
                   </IconButton>
-                  <IconButton sx={{ marginLeft: 'auto' }} color="error" data-toggle="modal" data-target={`#exampleModalCenterss-${data.title}`}>
+                  <IconButton sx={{ marginLeft: 'auto' }} color="error" data-toggle="modal" data-target='#notesModalCenters' onClick={()=>setDeleteNotedata(data.title)}>
                     <DeleteIcon />
                   </IconButton>
                 </div>}
