@@ -54,7 +54,7 @@ const [tripView, setTripView] = useState([]);
           <p className="left_side">Command</p>
         </div>
         <div className="view-con2">
-          <p className="left_side">: {tripView && tripView.trip_name} </p>
+          <p className="left_side">: {updateView && updateView.trip_name} </p>
           <p className="left_side">: {updateView && updateView.city} </p>
           <p className="left_side">: {updateView && updateView.str_date} </p>
           <p className="left_side">: {updateView && updateView.end_date} </p>
