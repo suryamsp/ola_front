@@ -13,7 +13,7 @@ import { API } from "./Api";
 export function Triplist() {
   const navigate =useNavigate();
 
-  const [tripList, setTripList] = useState([]);
+  const [tripList, setTripList] = useState();
   const [updateList, setUpdateList] = useState();
   const [deletelistdata, setdeleteListdata] = useState();
   const [Admin, setAdmin] = useState(false);
@@ -81,7 +81,8 @@ function ButtonDisable(data) {
 
   return (
    <div>
-                  <div className="modal fade" id='listModalCenter' tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{ tripList ? ( <><div>
+<div className="modal fade" id='listModalCenter' tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog modal-dialog-centered" role="document">
     <div className="modal-content">
       <div className="modal-header">
@@ -100,34 +101,47 @@ function ButtonDisable(data) {
     </div>
   </div>
 </div>
-     <div className="main_dev">
-      
-    
 
-              {tripList && tripList.map((data,index) => ( 
-              <div key={index} >
 
-        <div  
-        
-        className="card">
-        <img src={data.image} className="card-img-top" alt="Thirupathi" />
-        <div className="card-body">
-          <h5 className="card-title">{data.trip_name}</h5>
-          <p className="card-text">{
-            data.description
-          }</p>
-          <div className="like_btn_div"><Counter /> 
-          <div>{Admin && <IconButton color="primary" onClick={()=> navigate(`/update_trip/${data.trip_name}`)}><EditIcon/></IconButton>}
-          {Admin && <IconButton sx={{ marginLeft: "auto" }}color="error" data-toggle="modal" data-target='#listModalCenter' onClick={()=>setdeleteListdata(data.trip_name)} ><DeleteIcon/></IconButton>}</div>
-          
+  <div className="main_dev">
+   { tripList && tripList.map((data, index) => (
+    <div key={index}>
+        <div className="card">
+          <img src={data.image} className="card-img-top" alt="Thirupathi" />
+          <div className="card-body">
+            <h5 className="card-title">{data.trip_name}</h5>
+            <p className="card-text">{data.description}</p>
+            <div className="like_btn_div">
+              <Counter />
+              <div>
+                {Admin && (
+                  <IconButton color="primary" onClick={() => navigate(`/update_trip/${data.trip_name}`)}>
+                    <EditIcon/>
+                  </IconButton>
+                )}
+                {Admin && (
+                  <IconButton sx={{ marginLeft: "auto" }} color="error" data-toggle="modal" data-target='#listModalCenter' onClick={() => setdeleteListdata(data.trip_name)}>
+                    <DeleteIcon/>
+                  </IconButton>
+                )}
+              </div>
+            </div>
+            <button
+              style={{ backgroundColor: ButtonDisable(data) ? "red" : "green" }}
+              disabled={ButtonDisable(data)}
+              className="btn btn-primary btn_click"
+              onClick={() => { navigate(`/view/${data.trip_name}`) }}
+            >
+              {ButtonDisable(data) ? "Trip Not Completed" : "Trip Completed"}
+            </button>
           </div>
-          <button style={{backgroundColor: ButtonDisable(data)? "red" : " green"}} disabled={ButtonDisable(data)} className="btn btn-primary btn_click"  onClick={()=>{navigate(`/view/${data.trip_name}`)}}
-           >{ButtonDisable(data)? "Trip Not Completed" : "Trip Completed"}</button>
         </div>
       </div>
-      </div>
-        ))}
-        </div>
+    ))}
+  </div>
+</div></> ): (<><div className="load"><img className="loading" src="/img/loading.gif" /></div></> )}
+
+
    </div>
   
 
