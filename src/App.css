@@ -140,6 +140,7 @@ body {
     display: flex;
     flex-direction: column;
     font-weight: bold;
+    padding: 10px 20px 0px 30px;
   }
   .view-con2{
     display: flex;
@@ -248,10 +249,14 @@ body {
 }
 
 .left_side{
+  display:flex;
   font-weight: bold;
   font-size: 22px;
   color: white;
   text-shadow: 3px 0px 7px rgb(246, 14, 6);
+}
+.right_side{
+  margin-left: 30px;
 }
 .loading{
   width: 300px;
