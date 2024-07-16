@@ -146,7 +146,7 @@ style={{marginLeft:"20px"}}
         data-whatever="@mdo"
         onClick={handleAddClick} 
       >
-        ADD NOTES
+        LEAVE FORM
       </button>
       <div
         className="modal fade"
@@ -160,7 +160,7 @@ style={{marginLeft:"20px"}}
           <div onSubmit={formik.handleSubmit} className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
-                {detail ? 'Edit Note' : 'New Note'} {/* Change title based on whether editing or adding */}
+                {detail ? 'Edit Leave' : 'LEAVE FORM'} {/* Change title based on whether editing or adding */}
               </h5>
               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -170,7 +170,7 @@ style={{marginLeft:"20px"}}
               <form>
                 <div className="form-group">
                   <label htmlFor="recipient-name" className="col-form-label">
-                    Title:
+                    Name:
                   </label>
                   <input
                     type="text"
@@ -182,8 +182,33 @@ style={{marginLeft:"20px"}}
                   />
                 </div>
                 <div className="form-group">
+                <label htmlFor="recipient-name" className="col-form-label">
+                    Start Date:
+                  </label>
+                  <input type="date" className="form-control"
+             name="str_date"
+             onChange={formik.handleChange}
+             onBlur={formik.handleBlur}
+             value={formik.values.str_date}
+             required
+          />
+                </div>
+                <div className="form-group">
+                <label htmlFor="recipient-name" className="col-form-label">
+                    End Date:
+                  </label>
+                  <input type="date" className="form-control"
+             name="end_date"
+             onChange={formik.handleChange}
+             onBlur={formik.handleBlur}
+             value={formik.values.end_date}
+             required
+          />
+                </div>
+
+                <div className="form-group">
                   <label htmlFor="message-text" className="col-form-label">
-                    Message:
+                    Reason:
                   </label>
                   <textarea
                     className="form-control"
@@ -198,7 +223,7 @@ style={{marginLeft:"20px"}}
                     Close
                   </button>
                   <button type="submit" className="btn btn-primary">
-                    {detail ? 'Save Changes' : 'Add Note'} {/* Change button text based on whether editing or adding */}
+                    {detail ? 'Save Changes' : 'Add Leave'} {/* Change button text based on whether editing or adding */}
                   </button>
                 </div>
               </form>
@@ -216,7 +241,7 @@ style={{marginLeft:"20px"}}
                 {data.notes}
               </div>
               <div className="like_btn_div">
-          {Admin &&  <div>
+            <div>
                   <IconButton style={{ color: 'blue' }} data-toggle="modal" 
                   data-target="#exampleModal"
                   onClick={() => handleEditClick(data)}>
@@ -225,7 +250,7 @@ style={{marginLeft:"20px"}}
                   <IconButton sx={{ marginLeft: 'auto' }} color="error" data-toggle="modal" data-target='#notesModalCenters' onClick={()=>setDeleteNotedata(data.title)}>
                     <DeleteIcon />
                   </IconButton>
-                </div>}
+                </div>
               </div>
             </div>
           ))}
