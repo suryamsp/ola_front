@@ -246,6 +246,8 @@ style={{marginLeft:"20px"}}
       >
         Update value
       </button>
+      <button type="button" className="btn btn-primary font-weight-bold" onClick={()=>navigate("/")}>HOME</button>
+
      
 </div>
       <div
