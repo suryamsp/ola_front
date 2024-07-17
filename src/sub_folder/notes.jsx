@@ -24,23 +24,18 @@ useEffect(() => {
 
   const formik = useFormik({
     initialValues: {
-      title: '',
-      notes: '',
-      date:currentDate,
+      name:'',
+      str_date: '',
+      end_date:'',
+       reason: '',
     },
-    onSubmit: (values) => {
-      if (detail) {
-        editNote({detail,values});
-        console.log(detail);
-      } else {
-        addNote(values);
-      }
+    onSubmit: (values) => {addLeave(values)
     },
   });
 
-  const addNote = async (note) => {
+  const addLeave = async (note) => {
     try {
-      await fetch(`${API}/Add_notes`, {
+      await fetch(`${API}/Leave`, {
         method: 'POST',
         body: JSON.stringify(note),
         headers: { 'Content-Type': 'application/json' },
@@ -51,20 +46,20 @@ useEffect(() => {
     }
   };
 
-  const editNote = async ({detail,values}) => {
-    try {
-      await fetch(`${API}/edit/${detail.title}`, {
-        method: 'PUT',
+  // const editNote = async ({detail,values}) => {
+  //   try {
+  //     await fetch(`${API}/edit/${detail.title}`, {
+  //       method: 'PUT',
        
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
-      });
-      setDetail(null); // Reset detail after editing
-      window.location.reload();
-    } catch (error) {
-      console.error('Error during fetch:', error);
-    }
-  };
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify(values),
+  //     });
+  //     setDetail(null); // Reset detail after editing
+  //     window.location.reload();
+  //   } catch (error) {
+  //     console.error('Error during fetch:', error);
+  //   }
+  // };
 
   const deleteNote = async (dtitle) => {
     try {
@@ -82,7 +77,7 @@ useEffect(() => {
 
   const getNote = async () => {
     try {
-      const response = await fetch(`${API}/Addnotes`);
+      const response = await fetch(`${API}/leave`);
       const list = await response.json();
       setNote(list);
     } catch (error) {
@@ -114,7 +109,7 @@ useEffect(() => {
 
 
   return (
-    <div style={{ marginTop: '100px' }}>
+    <div style={{ marginTop: '50px' }}>
 
 <div  className="modal fade" id='notesModalCenters' tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog modal-dialog-centered" role="document">
@@ -175,10 +170,10 @@ style={{marginLeft:"20px"}}
                   <input
                     type="text"
                     className="form-control"
-                    name="title"
+                    name="name"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={formik.values.title}
+                    value={formik.values.name}
                   />
                 </div>
                 <div className="form-group">
@@ -212,10 +207,10 @@ style={{marginLeft:"20px"}}
                   </label>
                   <textarea
                     className="form-control"
-                    name="notes"
+                    name="reason"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={formik.values.notes}
+                    value={formik.values.reason}
                   />
                 </div>
                 <div className="modal-footer">
@@ -223,7 +218,7 @@ style={{marginLeft:"20px"}}
                     Close
                   </button>
                   <button type="submit" className="btn btn-primary">
-                    {detail ? 'Save Changes' : 'Add Leave'} {/* Change button text based on whether editing or adding */}
+                    {'Add Leave'} {/* Change button text based on whether editing or adding */}
                   </button>
                 </div>
               </form>
@@ -235,19 +230,16 @@ style={{marginLeft:"20px"}}
         {note &&
           note.map((data, index) => (
             <div key={index} className="cardStyles">
-              <div className="titleStyles">{data.title}</div>
+              <div className="titleStyles">{data.name}</div>
               <div className="contentStyles">
-                <p>{data.date}</p>
-                {data.notes}
+                <p>Starting Date: {data.str_date}</p>
+                <p> End Date: {data.end_date}</p>
+                {data.reason}
               </div>
               <div className="like_btn_div">
             <div>
-                  <IconButton style={{ color: 'blue' }} data-toggle="modal" 
-                  data-target="#exampleModal"
-                  onClick={() => handleEditClick(data)}>
-                    <EditIcon />
-                  </IconButton>
-                  <IconButton sx={{ marginLeft: 'auto' }} color="error" data-toggle="modal" data-target='#notesModalCenters' onClick={()=>setDeleteNotedata(data.title)}>
+              
+                  <IconButton sx={{ marginLeft: 'auto' }} color="error" data-toggle="modal" data-target='#notesModalCenters' onClick={()=>setDeleteNotedata(data.name)}>
                     <DeleteIcon />
                   </IconButton>
                 </div>

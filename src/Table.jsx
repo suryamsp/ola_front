@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { API } from "./sub_folder/Api";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { CropLandscapeTwoTone, Diversity2Rounded } from "@mui/icons-material";
+
 
 export function Table() {
   const [namelist, setNameList] = useState([]);
@@ -15,6 +15,10 @@ export function Table() {
   const [packtotal, setpackTotal] = useState([]); 
   const [finaltotal, setfinaltotal] = useState([]);
   const [packfinaltotal, setpackfinaltotal] = useState([]);
+  const [shift, setShift] = useState(false);
+
+
+  const shifttime=[6,7,8,9,10,11,12,1,'2.30',4,5,6,7,8,9,10,11];
 
   const totalOutput = () => {
     const newTotal = outlist.map((item) => {
@@ -36,7 +40,7 @@ export function Table() {
         .filter(key => key === 'PACK')
         .map(key => parseFloat(item.name[key]) || 0);
   
-      return filteredValues.reduce((acc, value) => acc + value, 0);
+      return filteredValues.reduce((acc, value) => acc - value, 0);
     });
   
     setpackTotal(newTotal);
@@ -64,7 +68,7 @@ export function Table() {
     useEffect(() => {
       const cumulativeSums = packtotal.reduce((acc, value) => {
         const lastSum = acc.length > 0 ? acc[acc.length - 1] : 0;
-        acc.push(lastSum + value);
+        acc.push(lastSum - value);
         return acc;
       }, []);
       setpackfinaltotal(cumulativeSums);
@@ -113,6 +117,7 @@ export function Table() {
     getnamelist();
 
   }, []);
+
 
 
 
@@ -178,14 +183,11 @@ export function Table() {
     getoutput();
   }, []);
 
-  // useEffect(() => {
-  //   outlist.forEach(item => {
-  //     const keys = Object.keys(item.name).filter(key => key !== 'PACK');
-  //     console.log(length(keys)); // Logs the keys in 'name' excluding 'PACK'
-  //   });
-  // }, [outlist]);
-  
-  
+   // Initialize shift state
+
+  const toggleShift = () => {
+    setShift(!shift); // Toggle shift state
+  };
   
 
 
@@ -213,7 +215,7 @@ export function Table() {
     <div className="table_div">
 
 
-<div style={{ marginTop: '100px' }}>
+<div style={{ marginTop: '50px' }}>
 
 <div  className="modal fade" id='notesModalCenters' tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog modal-dialog-centered" role="document">
@@ -246,8 +248,24 @@ style={{marginLeft:"20px"}}
       >
         Update value
       </button>
-      <button type="button" className="btn btn-primary font-weight-bold" onClick={()=>navigate("/")}>HOME</button>
+      <button type="button" className="btn btn-primary font-weight-bold home_btn" onClick={()=>navigate("/")}>HOME</button>
+<div className="shift_div">      
 
+<button className="shift_btn_div" onClick={toggleShift}>
+      {shift ? (
+        <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" fill="currentColor" className="bi bi-1-square-fill" viewBox="0 0 16 16">
+          <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm7.283 4.002V12H7.971V5.338h-.065L6.072 6.656V5.385l1.899-1.383z"/>
+        </svg>
+      ) : (
+        <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" fill="currentColor" className="bi bi-2-square-fill" viewBox="0 0 16 16">
+          <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm4.646 6.24v.07H5.375v-.064c0-1.213.879-2.402 2.637-2.402 1.582 0 2.613.949 2.613 2.215 0 1.002-.6 1.667-1.287 2.43l-.096.107-1.974 2.22v.077h3.498V12H5.422v-.832l2.97-3.293c.434-.475.903-1.008.903-1.705 0-.744-.557-1.236-1.313-1.236-.843 0-1.336.615-1.336 1.306"/>
+        </svg>
+      )}
+      <span className="shift_btn">Shift</span>
+    </button>
+
+
+</div>
      
 </div>
       <div
@@ -325,6 +343,7 @@ style={{marginLeft:"20px"}}
 <table className="table table-bordered table-center">
   <thead className="table-primary">
   <tr>
+  <th>Hours</th>
   {Object.values(namelist[0]?.name || {}).map((value, idx) => (
     <th className="table_name" key={idx}>{value}</th>
   ))}
@@ -338,10 +357,14 @@ style={{marginLeft:"20px"}}
   <tbody>
   {outlist.map((item, index) => (
   <tr key={index}>
+     <td >
+  {shift ? `${shifttime[index]} - ${shifttime[index+1]}` : `${shifttime[index+8]} - ${shifttime[index+9]}`}
+</td>
 
     {Object.keys(item.name)
   .filter(key => key !== 'PACK')
   .map((key, idx) => (
+    
     <td key={idx}>{item.name[key]}</td>
   ))}
 
@@ -367,13 +390,13 @@ style={{marginLeft:"20px"}}
 
 </table>
 </div>
-<LogNote outlist={outlist} finaltotal={finaltotal} packfinaltotal={packfinaltotal} packtotal={packtotal} total={total}  namelist={namelist}/>
+<LogNote outlist={outlist} finaltotal={finaltotal} packfinaltotal={packfinaltotal} packtotal={packtotal} total={total}  namelist={namelist} shift={shift} setShift={setShift} shifttime={shifttime}  />
     </div> 
   );
 }
 
 
-function LogNote({ outlist, finaltotal, packfinaltotal,packtotal,total,namelist }) {
+function LogNote({ outlist, finaltotal, packfinaltotal,packtotal,total,namelist, shift, setShift, shifttime }) {
   
 const [planlenth,setpalnlength]=useState('0');
 const [planarr,setplanarr]=useState([]);
@@ -381,7 +404,7 @@ const [plan,setplan]=useState([]);
 
   
   const head={
-    "head1":"",
+    "head1":"Hours",
     "head2":"PLAN",
     "head3":"PRODUCTION",
     "head4":"PACK",
@@ -419,6 +442,7 @@ const [plan,setplan]=useState([]);
 <table className="table table-bordered">
   <thead className="table-warning">
     <tr>
+ 
     {Object.values(head).map((value, index) => (
             <th scope="col" key={index}>{value}</th>
           ))}
@@ -430,10 +454,10 @@ const [plan,setplan]=useState([]);
          
           {total.map((item, index) => (
             <tr key={index}>
-              <th scope="row">{index + 1}  Hours</th>
+              <th scope="row">{shift ? `${shifttime[index]} - ${shifttime[index+1]}` : `${shifttime[index+8]} - ${shifttime[index+9]}`}</th>
               <td>{planarr[index]}/ {plan[index]}</td>
               <td>{item} / {finaltotal[index]}</td>
-              <td>{packtotal[index]} / {packfinaltotal[index]}</td>
+              <td>{-1*parseInt(packtotal[index])} / {packfinaltotal[index]}</td>
               <td>{parseInt(item) - parseInt(planarr[index])} / {parseInt(finaltotal[index]) - parseInt(plan[index])}</td>
             </tr>
           ))}

@@ -1,5 +1,9 @@
 .nav_bar_btn{
     margin: 20px;
+    padding-top:50px;
+}
+.Delete_btn{
+    margin-left: 20px;
 }
 .hours_dev{
     margin: 50px 20px 20px 20px;
@@ -23,3 +27,56 @@
     margin-bottom: 100px;
 }
 
+.logo{
+    width: 200px;
+}
+.cardStyles {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+  
+  .cardStyles:hover {
+    transform: scale(1.02);
+  }
+  
+  .titleStyles {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .contentStyles {
+    font-size: 1em;
+    color: #666;
+  }
+  
+  .contentStyles p {
+    margin: 4px 0;
+  }
+  .span_dev{
+    font-weight: bold;
+  }
+  .home_btn{
+    margin-right: 20px;
+  }
+
+.shift_div{
+    margin-left: 20px;
+ 
+
+}
+.shift_btn{
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 15px;
+
+}
+.shift_btn_div{
+    border: none;
+    background-color: white;
+}

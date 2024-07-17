@@ -11,6 +11,7 @@ export default function App() {
 
   return (
     <div className="app_dev">
+      <div><img className="logo" src="\public\img\ola.png"></img></div>
       <Routes>
         <Route path="" element={<><Nav_bar/><Hours/></>} />
         <Route path="/Leave" element={<Notes />} />
