@@ -143,6 +143,13 @@ style={{marginLeft:"20px"}}
       >
         LEAVE FORM
       </button>
+      <button
+            type="button"
+            className="btn btn-primary font-weight-bold Delete_btn"
+            onClick={() => { navigate('/') }}
+          >
+            Back
+          </button>
       <div
         className="modal fade"
         id="exampleModal"

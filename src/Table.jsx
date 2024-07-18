@@ -9,7 +9,7 @@ export function Table() {
   const navigate = useNavigate();
   const [upvalue, setUpvalue] = useState([]);
   const [objarray, setobjarray] = useState([]);
-  const [hrsvalue, sethrsvalue] = useState([]);
+  const [hrsvalue, sethrsvalue] = useState({});
   const [outlist, setoutList] = useState([]); // Assuming outlist is an object
   const [total, setTotal] = useState([]); 
   const [packtotal, setpackTotal] = useState([]); 
@@ -128,6 +128,7 @@ export function Table() {
       // Process form values and update hrsvalue state
       // sethrsvalue(values);
      sethrsvalue(values);
+    console.log(values);
       // Add your submission logic here
     }
   });
@@ -426,8 +427,31 @@ const [plan,setplan]=useState([]);
 
   
   useEffect(() => {
-    setplanarr([26 * parseInt(planlenth),26 * parseInt(planlenth),24* parseInt(planlenth),26* parseInt(planlenth),26* parseInt(planlenth),16* parseInt(planlenth),26* parseInt(planlenth),30* parseInt(planlenth)]);
-  }, [planlenth]);
+    const newPlanArr = shift 
+      ? [
+          26 * parseInt(planlenth), 
+          26 * parseInt(planlenth), 
+          24 * parseInt(planlenth), 
+          26 * parseInt(planlenth), 
+          26 * parseInt(planlenth), 
+          16 * parseInt(planlenth), 
+          26 * parseInt(planlenth), 
+          30 * parseInt(planlenth)
+        ] 
+      : [
+          30 * parseInt(planlenth), 
+          26 * parseInt(planlenth), 
+          24 * parseInt(planlenth), 
+          26 * parseInt(planlenth), 
+          26 * parseInt(planlenth), 
+          16 * parseInt(planlenth), 
+          26 * parseInt(planlenth), 
+          26 * parseInt(planlenth)
+        ];
+    
+    setplanarr(newPlanArr);
+  }, [planlenth, shift]);
+  
   
 
   return(
