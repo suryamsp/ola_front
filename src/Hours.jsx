@@ -129,7 +129,7 @@ export function Hours() {
                   <option value="Yuvasri">Yuvasri</option>
                   <option value="Srinithi">Srinithi</option>
                  
-                  <option value="Vasntha Kumari">Vasntha Kumari</option>
+                  <option value="Vasntha Kumari">Vasantha Kumari</option>
                   <option value="Shiyam Kumar">Shiyam Kumar</option>
                   <option value="OJT 1">OJT</option>
                   <option value="OJT 2">OJT</option>
@@ -151,7 +151,7 @@ export function Hours() {
                   <option value="Yuvasri">Yuvasri</option>
                   <option value="Srinithi">Srinithi</option>
                  
-                  <option value="Vasntha Kumari">Vasntha Kumari</option>
+                  <option value="Vasntha Kumari">Vasantha Kumari</option>
                   <option value="Shiyam Kumar">Shiyam Kumar</option>
                   <option value="OJT 1">OJT 1</option>
                   <option value="OJT 2">OJT 2</option>
