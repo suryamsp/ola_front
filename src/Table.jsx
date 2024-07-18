@@ -135,7 +135,7 @@ export function Table() {
   });
 
 
-  const addOutput = async (data, navigation) => {
+  const addOutput = async (data) => {
     try {
       const response = await fetch(`${API}/output`, {
         method: 'POST',
@@ -149,8 +149,7 @@ export function Table() {
         throw new Error('Failed to add output');
       }
   
-      // Perform navigation
-      navigation.replace('CurrentScreen');
+    
     } catch (error) {
       console.error('Error during fetch:', error);
       // Handle error as needed
@@ -159,9 +158,7 @@ export function Table() {
   
   
   useEffect(() => {
-    if (Object.keys(hrsvalue).length > 0) {
       addOutput(hrsvalue);
-    }
   }, [hrsvalue]); // Ensure object is in the dependency array if it might change
   
 const Closewin=()=>{
@@ -342,19 +339,17 @@ style={{marginLeft:"20px"}}
 <div className="table_div">
 <table className="table table-bordered table-center">
  
-{namelist &&  <thead className="table-primary">
+  { upvalue && (<thead className="table-primary">
   <tr>
-  <th>Hours</th>
-  {Object.values(namelist[0]?.name || {}).map((value, idx) => (
-    <th className="table_name" key={idx}>{value}</th>
-  ))}
-  <th >TOTAL</th>
-  <th >PACK</th>
-  
-  
-</tr>
+    <th>Hours</th>
+    {upvalue.map((value, idx) => (
+      <th className="table_name" key={idx}>{value}</th>
+    ))}
+    <th>TOTAL</th>
+    <th>PACK</th>
+  </tr>
+</thead> )}
 
-  </thead>}
 
  {outlist &&  <tbody>
   {outlist.map((item, index) => (
