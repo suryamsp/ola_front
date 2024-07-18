@@ -239,8 +239,9 @@ style={{marginLeft:"20px"}}
             <div key={index} className="cardStyles">
               <div className="titleStyles">{data.name}</div>
               <div className="contentStyles">
-                <p>Starting Date: {data.str_date}</p>
-                <p> End Date: {data.end_date}</p>
+              <p>Starting Date: {new Date(data.str_date).toLocaleDateString()}</p>
+
+              <p>End Date: {new Date(data.end_date).toLocaleDateString()}</p>
                 {data.reason}
               </div>
               <div className="like_btn_div">

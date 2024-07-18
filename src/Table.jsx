@@ -299,6 +299,7 @@ style={{marginLeft:"20px"}}
   onChange={formik.handleChange}
   onBlur={formik.handleBlur}
   value={formik.values[`${name}`]}
+  required
 />
           
       </div>
