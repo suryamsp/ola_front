@@ -146,7 +146,7 @@ style={{marginLeft:"20px"}}
       <button
             type="button"
             className="btn btn-primary font-weight-bold Delete_btn"
-            onClick={() => { navigate('/') }}
+            onClick={() => { navigate('/')}}
           >
             Back
           </button>
