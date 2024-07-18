@@ -15,7 +15,7 @@ export function Table() {
   const [packtotal, setpackTotal] = useState([]); 
   const [finaltotal, setfinaltotal] = useState([]);
   const [packfinaltotal, setpackfinaltotal] = useState([]);
-  const [shift, setShift] = useState(false);
+  const [shift, setShift] = useState(true);
 
 
   const shifttime=[6,7,8,9,10,11,12,1,'2.30',4,5,6,7,8,9,10,11];
@@ -128,7 +128,7 @@ export function Table() {
       // Process form values and update hrsvalue state
       // sethrsvalue(values);
      sethrsvalue(values);
-    console.log(values);
+
       // Add your submission logic here
     }
   });
@@ -292,7 +292,7 @@ style={{marginLeft:"20px"}}
           {name}
         </label>
         <input
-  type="text"
+  type="number"
   className="form-control"
   id={`title-${index}`}
   name={`${name}`}
