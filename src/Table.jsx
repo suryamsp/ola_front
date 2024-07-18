@@ -341,7 +341,8 @@ style={{marginLeft:"20px"}}
 
 <div className="table_div">
 <table className="table table-bordered table-center">
-  <thead className="table-primary">
+ 
+{namelist &&  <thead className="table-primary">
   <tr>
   <th>Hours</th>
   {Object.values(namelist[0]?.name || {}).map((value, idx) => (
@@ -353,8 +354,9 @@ style={{marginLeft:"20px"}}
   
 </tr>
 
-  </thead>
-  <tbody>
+  </thead>}
+
+ {outlist &&  <tbody>
   {outlist.map((item, index) => (
   <tr key={index}>
      <td >
@@ -385,7 +387,7 @@ style={{marginLeft:"20px"}}
   </tr>
 ))}
 
-</tbody> 
+</tbody> }
 
 
 </table>
@@ -473,18 +475,18 @@ const [plan,setplan]=useState([]);
 
     </tr>
   </thead>
-  <tbody>
+{total &&   <tbody>
          
-          {total.map((item, index) => (
-            <tr key={index}>
-              <th scope="row">{shift ? `${shifttime[index]} - ${shifttime[index+1]}` : `${shifttime[index+8]} - ${shifttime[index+9]}`}</th>
-              <td>{planarr[index]}/ {plan[index]}</td>
-              <td>{item} / {finaltotal[index]}</td>
-              <td>{-1*parseInt(packtotal[index])} / {packfinaltotal[index]}</td>
-              <td>{parseInt(item) - parseInt(planarr[index])} / {parseInt(finaltotal[index]) - parseInt(plan[index])}</td>
-            </tr>
-          ))}
-        </tbody>
+         {total.map((item, index) => (
+           <tr key={index}>
+             <th scope="row">{shift ? `${shifttime[index]} - ${shifttime[index+1]}` : `${shifttime[index+8]} - ${shifttime[index+9]}`}</th>
+             <td>{planarr[index]}/ {plan[index]}</td>
+             <td>{item} / {finaltotal[index]}</td>
+             <td>{-1*parseInt(packtotal[index])} / {packfinaltotal[index]}</td>
+             <td>{parseInt(item) - parseInt(planarr[index])} / {parseInt(finaltotal[index]) - parseInt(plan[index])}</td>
+           </tr>
+         ))}
+       </tbody>}
 
 </table>
     </div>
