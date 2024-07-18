@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { API } from "./sub_folder/Api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useNavigation } from "react-router-dom";
 import { useFormik } from "formik";
 
 
 export function Table() {
   const [namelist, setNameList] = useState([]);
   const navigate = useNavigate();
+
   const [upvalue, setUpvalue] = useState([]);
   const [objarray, setobjarray] = useState([]);
   const [hrsvalue, sethrsvalue] = useState({});
@@ -134,19 +135,28 @@ export function Table() {
   });
 
 
-  const addOutput = async (data) => {
+  const addOutput = async (data, navigation) => {
     try {
-      await fetch(`${API}/output`, {
+      const response = await fetch(`${API}/output`, {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(data),
-        headers: { 'Content-Type': 'application/json' },
       });
-     
-      window.location.reload();
+  
+      if (!response.ok) {
+        throw new Error('Failed to add output');
+      }
+  
+      // Perform navigation
+      navigation.replace('CurrentScreen');
     } catch (error) {
       console.error('Error during fetch:', error);
+      // Handle error as needed
     }
   };
+  
   
   useEffect(() => {
     if (Object.keys(hrsvalue).length > 0) {
@@ -154,10 +164,10 @@ export function Table() {
     }
   }, [hrsvalue]); // Ensure object is in the dependency array if it might change
   
+const Closewin=()=>{
+  window.location.reload();
+}
 
-
-
-  
 
   const fetchDataout = async (url) => {
     try {
@@ -301,9 +311,19 @@ style={{marginLeft:"20px"}}
   </div>
 )}
 
+
+
+
+
+
+
+
+
+                
+          
                 <div className="modal-footer">
 
-                  <button type="submit" className="btn btn-primary"  >
+                  <button type="submit" className="btn btn-primary" onClick={Closewin}  >
                     {'Add'} {/* Change button text based on whether editing or adding */}
                   </button>
                 </div>
