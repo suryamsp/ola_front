@@ -119,26 +119,6 @@ export function Table() {
   }, []);
 
 
-
-
-
-  const fetchDataout = async (url) => {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      setoutList(data); // Assuming your API returns an array of names or objects
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-
-
-
-
   const formik = useFormik({
     initialValues: upvalue.reduce((acc,name,_, index) => {
       acc[`${name}`] = ''; // Initialize each dynamic field
@@ -173,6 +153,20 @@ export function Table() {
   }, [hrsvalue]); // Ensure object is in the dependency array if it might change
   
   
+
+  const fetchDataout = async (url) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setoutList(data); // Assuming your API returns an array of names or objects
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
 
   const getoutput = async () => {
 
