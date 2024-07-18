@@ -141,18 +141,22 @@ export function Table() {
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'application/json' },
       });
-      // You can update the UI or state instead of reloading the page
-      // window.location.reload(); // Not recommended
+     
+      window.location.reload();
     } catch (error) {
       console.error('Error during fetch:', error);
     }
   };
+  
   useEffect(() => {
     if (Object.keys(hrsvalue).length > 0) {
       addOutput(hrsvalue);
     }
   }, [hrsvalue]); // Ensure object is in the dependency array if it might change
   
+
+
+
   
 
   const fetchDataout = async (url) => {
@@ -193,15 +197,6 @@ export function Table() {
 
 
 
-  const handleAddClick = () => {
-    formik.resetForm();
-  };
-
-
-  const Closewin = () => {
-    window.location.reload();
-  };
-  
 
 
 
@@ -239,7 +234,6 @@ style={{marginLeft:"20px"}}
         data-toggle="modal"
         data-target="#exampleModal"
         data-whatever="@mdo"
-        onClick={handleAddClick} 
       >
         Update value
       </button>
@@ -307,19 +301,9 @@ style={{marginLeft:"20px"}}
   </div>
 )}
 
-
-
-
-
-
-
-
-
-                
-          
                 <div className="modal-footer">
 
-                  <button type="submit" className="btn btn-primary" onClick={Closewin}  >
+                  <button type="submit" className="btn btn-primary"  >
                     {'Add'} {/* Change button text based on whether editing or adding */}
                   </button>
                 </div>
