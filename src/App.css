@@ -111,9 +111,3 @@
  /* Center text within card body */
 }
 
-@media (max-width: 768px) {
-  .card-container {
-    flex-direction: column;
-    align-items: center;
-  }
-}
