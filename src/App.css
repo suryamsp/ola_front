@@ -88,16 +88,7 @@
   justify-content: center; /* Center cards horizontally */
 }
 
-/* Card styling */
-.carddesign {
-  display: flex;
-  flex-direction: column;
 
-  justify-content: space-between; /* Distribute space between header and body */
-  border-radius: 0.25rem; /* Rounded corners */
-  overflow: hidden; /* Hide any overflow */
-  transition: transform 0.2s; /* Smooth scaling effect on hover */
-}
 
 .carddesign:hover {
   transform: scale(1.05); /* Slightly scale up the card on hover */
