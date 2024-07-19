@@ -160,7 +160,7 @@ export function Table() {
   
   
   useEffect(() => {
-    if (Object.keys(hrsvalue).length > 0 ) {
+    if (Object.keys(hrsvalue).length > 1 ) {
       addOutput(hrsvalue);
     }
   }, [hrsvalue]);
