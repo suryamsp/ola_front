@@ -205,6 +205,34 @@ export function Table() {
     }
   }, [total]);
   
+
+
+
+
+  const [filteredValues, setFilteredValues] = useState([]);
+  const [totalValues, setTotalValues] = useState(() => (key) =>
+    outlist.reduce((total, item) => total + (item.name[key] || 0), 0)
+  );
+
+  useEffect(() => {
+    const newFilteredValues = Object.keys(outlist[0]?.name || {}).filter(key => key !== 'PACK');
+    setFilteredValues(newFilteredValues);
+
+    const calculateTotal = (key) => outlist.reduce((total, item) => total + (item.name[key] || 0), 0);
+    setTotalValues(() => calculateTotal);
+
+  }, [outlist]);
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div className="table_div">
 
@@ -372,6 +400,20 @@ style={{marginLeft:"20px"}}
 
 
 </table>
+
+
+<div className="card-container">
+  {filteredValues.map((value, idx) => (
+    <div key={idx} className="card border-secondary mb-3 carddesign" style={{ maxWidth: '19rem' }}>
+      <div className="card-header"><span >{value}</span></div>
+      <div className="card-body">
+        <h5 className="card-title">Total: {totalValues(value)}</h5>
+      </div>
+    </div>
+  ))}
+</div>
+
+
 </div>
 <LogNote outlist={outlist} finaltotal={finaltotal} packfinaltotal={packfinaltotal} packtotal={packtotal} total={total}  namelist={namelist} shift={shift} setShift={setShift} shifttime={shifttime}  />
     </div> 

@@ -57,8 +57,8 @@ export function Nav_bar(){
   </div>
 </div>
 <button type="button" className="btn btn-primary font-weight-bold" onClick={()=>navigate("/Leave")}>Leave Form</button>
-<button type="button" className="btn btn-danger Delete_btn font-weight-bold" data-toggle="modal" data-target='#notesModaldelete' >Delete</button>
-
+<button type="button" className="btn btn-primary Delete_btn font-weight-bold" onClick={()=>navigate("/output")}>Output</button>
+<button type="button" className="btn btn-danger Delete_btn  font-weight-bold" data-toggle="modal" data-target='#notesModaldelete' >Delete</button>
 </div>
 
 );
