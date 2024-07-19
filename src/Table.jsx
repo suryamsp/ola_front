@@ -402,16 +402,16 @@ style={{marginLeft:"20px"}}
 </table>
 
 
-<div className="card-container">
+<div>
   {filteredValues.map((value, idx) => (
     <div key={idx} className="card border-secondary mb-3 carddesign" style={{ maxWidth: '19rem' }}>
-      <div className="card-header"><span >{value}</span></div>
-      <div className="card-body">
-        <h5 className="card-title">Total: {totalValues(value)}</h5>
-      </div>
+      <div className="card-header"><span >{value}</span> <h5 className="card-title">Total: {totalValues(value)}</h5></div>
+
     </div>
   ))}
 </div>
+
+
 
 
 </div>
