@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { API } from "./sub_folder/Api";
 import { useNavigate, useNavigation } from "react-router-dom";
 import { useFormik } from "formik";
+import { LogNote } from "./LogNote";
 
 
 export function Table() {
@@ -17,6 +18,7 @@ export function Table() {
   const [finaltotal, setfinaltotal] = useState([]);
   const [packfinaltotal, setpackfinaltotal] = useState([]);
   const [shift, setShift] = useState(true);
+  const [btn, setBtn] = useState(false);
 
 
   const shifttime=[6,7,8,9,10,11,12,1,'2.30',4,5,6,7,8,9,10,11];
@@ -148,7 +150,7 @@ export function Table() {
       if (!response.ok) {
         throw new Error('Failed to add output');
       }
-  
+  window.location.reload();
     
     } catch (error) {
       console.error('Error during fetch:', error);
@@ -158,12 +160,12 @@ export function Table() {
   
   
   useEffect(() => {
+    if (Object.keys(hrsvalue).length > 0 ) {
       addOutput(hrsvalue);
-  }, [hrsvalue]); // Ensure object is in the dependency array if it might change
+    }
+  }, [hrsvalue]);
+   // Ensure object is in the dependency array if it might change
   
-const Closewin=()=>{
-  window.location.reload();
-}
 
 
   const fetchDataout = async (url) => {
@@ -195,19 +197,14 @@ const Closewin=()=>{
     setShift(!shift); // Toggle shift state
   };
   
-
-
+  useEffect(() => {
+    if (total.length === 8) {
+      setBtn(true);
+    } else {
+      setBtn(false); // Optional: reset btn to false if length is not 4
+    }
+  }, [total]);
   
-
-
-  
-
-
-
-
-
-
-
   return (
     <div className="table_div">
 
@@ -285,7 +282,6 @@ style={{marginLeft:"20px"}}
             <div className="modal-body">
     <form onSubmit={formik.handleSubmit}>
 
-              {upvalue && (
   <div className="form-group">
     {upvalue.map((name, index) => (
       <div key={index}>
@@ -306,21 +302,9 @@ style={{marginLeft:"20px"}}
       </div>
     ))}
   </div>
-)}
-
-
-
-
-
-
-
-
-
-                
-          
                 <div className="modal-footer">
 
-                  <button type="submit" className="btn btn-primary" onClick={Closewin}  >
+                  <button type="submit" className="btn btn-primary"  disabled={btn}  >
                     {'Add'} {/* Change button text based on whether editing or adding */}
                   </button>
                 </div>
@@ -339,19 +323,21 @@ style={{marginLeft:"20px"}}
 <div className="table_div">
 <table className="table table-bordered table-center">
  
-  { upvalue && (<thead className="table-primary">
+<thead className="table-primary">
   <tr>
     <th>Hours</th>
-    {upvalue.map((value, idx) => (
-      <th className="table_name" key={idx}>{value}</th>
-    ))}
+    {upvalue
+      .filter(value => value !== 'PACK')  // Filter out values that are 'PACK'
+      .map((value, idx) => (
+        <th className="table_name" key={idx}>{value}</th>  // Create header cell with the last character of each filtered value
+      ))}
     <th>TOTAL</th>
     <th>PACK</th>
   </tr>
-</thead> )}
+</thead>
 
 
- {outlist &&  <tbody>
+ <tbody>
   {outlist.map((item, index) => (
   <tr key={index}>
      <td >
@@ -382,7 +368,7 @@ style={{marginLeft:"20px"}}
   </tr>
 ))}
 
-</tbody> }
+</tbody> 
 
 
 </table>
@@ -393,97 +379,4 @@ style={{marginLeft:"20px"}}
 }
 
 
-function LogNote({ outlist, finaltotal, packfinaltotal,packtotal,total,namelist, shift, setShift, shifttime }) {
-  
-const [planlenth,setpalnlength]=useState('0');
-const [planarr,setplanarr]=useState([]);
-const [plan,setplan]=useState([]);
 
-  
-  const head={
-    "head1":"Hours",
-    "head2":"PLAN",
-    "head3":"PRODUCTION",
-    "head4":"PACK",
-    "head5":"GAP",
-  }
-  useEffect(() => {
-    namelist.forEach(item => {
-      const values = Object.values(item.name);
-      setpalnlength(values.length);
-    });
-  }, [namelist]);
-
-  
-
-  useEffect(() => {
-    const cumulativeSums = planarr.reduce((acc, value) => {
-      const lastSum = acc.length > 0 ? acc[acc.length - 1] : 0;
-      acc.push(lastSum + value);
-      return acc;
-    }, []);
-  
-    setplan(cumulativeSums);
-  }, [planarr]);
-  
-
-  
-  useEffect(() => {
-    const newPlanArr = shift 
-      ? [
-          26 * parseInt(planlenth), 
-          26 * parseInt(planlenth), 
-          24 * parseInt(planlenth), 
-          26 * parseInt(planlenth), 
-          26 * parseInt(planlenth), 
-          16 * parseInt(planlenth), 
-          26 * parseInt(planlenth), 
-          30 * parseInt(planlenth)
-        ] 
-      : [
-          30 * parseInt(planlenth), 
-          26 * parseInt(planlenth), 
-          24 * parseInt(planlenth), 
-          26 * parseInt(planlenth), 
-          26 * parseInt(planlenth), 
-          16 * parseInt(planlenth), 
-          26 * parseInt(planlenth), 
-          26 * parseInt(planlenth)
-        ];
-    
-    setplanarr(newPlanArr);
-  }, [planlenth, shift]);
-  
-  
-
-  return(
-    <div className="table_div">
-      <h1>LOG NOTE</h1>
-<table className="table table-bordered">
-  <thead className="table-warning">
-    <tr>
- 
-    {Object.values(head).map((value, index) => (
-            <th scope="col" key={index}>{value}</th>
-          ))}
-          
-
-    </tr>
-  </thead>
-{total &&   <tbody>
-         
-         {total.map((item, index) => (
-           <tr key={index}>
-             <th scope="row">{shift ? `${shifttime[index]} - ${shifttime[index+1]}` : `${shifttime[index+8]} - ${shifttime[index+9]}`}</th>
-             <td>{planarr[index]}/ {plan[index]}</td>
-             <td>{item} / {finaltotal[index]}</td>
-             <td>{-1*parseInt(packtotal[index])} / {packfinaltotal[index]}</td>
-             <td>{parseInt(item) - parseInt(planarr[index])} / {parseInt(finaltotal[index]) - parseInt(plan[index])}</td>
-           </tr>
-         ))}
-       </tbody>}
-
-</table>
-    </div>
-  );
-}
