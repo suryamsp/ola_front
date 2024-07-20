@@ -19,9 +19,7 @@
 .submit_btn_side{
     margin-right: 20px;
 }
-.update_btn{
-    margin: 20px;
-}
+
 .table_div{
     margin: 20px;
     margin-bottom: 100px;
@@ -61,9 +59,7 @@
   .span_dev{
     font-weight: bold;
   }
-  .home_btn{
-    margin-right: 20px;
-  }
+
 
 .shift_div{
     margin-left: 20px;
@@ -112,19 +108,19 @@
 .button-container {
   display: flex;
   align-items: center;
-  gap: 20px; /* space between buttons */
+  gap: 10px; 
+  margin-bottom: 20px;/* space between buttons */
 }
 
 
 .shift_div {
   display: flex;
-  align-items: center;
 }
 
 .shift_btn_div {
   display: flex;
   align-items: center;
-  gap: 10px; /* space between icon and text */
+  gap: 5px; /* space between icon and text */
 }
 
 .shift_btn {
