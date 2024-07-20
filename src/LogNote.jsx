@@ -10,7 +10,7 @@ export function LogNote({ outlist, finaltotal, packfinaltotal, packtotal, total,
   const head = {
     "head1": "Hours",
     "head2": "PLAN",
-    "head3": "PRODUCTION",
+    "head3": "PRODU",
     "head4": "PACK",
     "head5": "GAP",
   };
@@ -64,7 +64,7 @@ export function LogNote({ outlist, finaltotal, packfinaltotal, packtotal, total,
 
 
   return (
-    <div className="table_div">
+    <div class="table-responsive">
       <h1>LOG NOTE</h1>
       <table className="table table-bordered">
         <thead className="table-warning">

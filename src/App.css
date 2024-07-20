@@ -107,3 +107,29 @@
  /* Center text within card body */
 }
 
+
+
+.button-container {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* space between buttons */
+}
+
+
+.shift_div {
+  display: flex;
+  align-items: center;
+}
+
+.shift_btn_div {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* space between icon and text */
+}
+
+.shift_btn {
+  margin-left: 10px;
+}
+.bold-text {
+  font-weight: bold;
+}
