@@ -235,9 +235,8 @@ export function Table() {
 
   return (
     <div className="table_div">
-
-
-<div style={{ marginTop: '50px' }}>
+  {upvalue ? <div>
+    <div style={{ marginTop: '50px' }}>
 
 <div  className="modal fade" id='notesModalCenters' tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog modal-dialog-centered" role="document">
@@ -412,8 +411,8 @@ export function Table() {
   </tr>
   
 ))}
-<tr>
-  <td className="bold-text">TOTAL</td>
+<tr className="table-success">
+  <td className="bold-text table-primary">TOTAL</td>
   {filteredValues.map((value, idx) => (
     <td key={idx} className="bold-text">{totalValues(value)}</td>
   ))}
@@ -431,6 +430,16 @@ export function Table() {
 
 </div>
 <LogNote outlist={outlist} finaltotal={finaltotal} packfinaltotal={packfinaltotal} packtotal={packtotal} total={total}  namelist={namelist} shift={shift} setShift={setShift} shifttime={shifttime}  />
+
+  </div>:
+  <div class="d-flex justify-content-center">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+  
+  }
+
     </div> 
   );
 }
