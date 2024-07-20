@@ -19,6 +19,7 @@ export function Table() {
   const [packfinaltotal, setpackfinaltotal] = useState([]);
   const [shift, setShift] = useState(true);
   const [btn, setBtn] = useState(false);
+  const [load, setLoad]= useState(false)
 
 
   const shifttime=[6,7,8,9,10,11,12,1,'2.30',4,5,6,7,8,9,10,11];
@@ -43,7 +44,7 @@ export function Table() {
         .filter(key => key === 'PACK')
         .map(key => parseFloat(item.name[key]) || 0);
   
-      return filteredValues.reduce((acc, value) => acc - value, 0);
+      return filteredValues.reduce((acc, value) => acc + value, 0);
     });
   
     setpackTotal(newTotal);
@@ -71,7 +72,7 @@ export function Table() {
     useEffect(() => {
       const cumulativeSums = packtotal.reduce((acc, value) => {
         const lastSum = acc.length > 0 ? acc[acc.length - 1] : 0;
-        acc.push(lastSum - value);
+        acc.push(value - lastSum);
         return acc;
       }, []);
       setpackfinaltotal(cumulativeSums);
@@ -88,6 +89,7 @@ export function Table() {
       });
     });
     setUpvalue([...tempArray,'PACK']);
+    
   };
 
   useEffect(() => {
@@ -105,7 +107,8 @@ export function Table() {
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
-      setNameList(data); // Assuming your API returns an array of names or objects
+      setNameList(data);
+     // Assuming your API returns an array of names or objects
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -120,6 +123,15 @@ export function Table() {
     getnamelist();
 
   }, []);
+
+  useEffect(() => {
+    if(upvalue.length >= 2){
+    setLoad(true);
+  }else{
+    setLoad(false);
+  }
+
+  }, [upvalue]);
 
 
   const formik = useFormik({
@@ -235,7 +247,7 @@ export function Table() {
 
   return (
     <div className="table_div">
-  {upvalue ? <div>
+  {load ? <div>
     <div style={{ marginTop: '50px' }}>
 
 <div  className="modal fade" id='notesModalCenters' tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -406,7 +418,7 @@ export function Table() {
     {Object.keys(item.name)
   .filter(key => key === 'PACK')
   .map((key, idx) => (
-    <td key={idx}>{item.name[key]}{' / '}{packfinaltotal[index]}</td>
+    <td key={idx}>{packfinaltotal[index]}{' / '}{item.name[key]}</td>
   ))}
   </tr>
   
@@ -432,11 +444,10 @@ export function Table() {
 <LogNote outlist={outlist} finaltotal={finaltotal} packfinaltotal={packfinaltotal} packtotal={packtotal} total={total}  namelist={namelist} shift={shift} setShift={setShift} shifttime={shifttime}  />
 
   </div>:
-  <div class="d-flex justify-content-center">
-  <div class="spinner-border" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
+  <div className="loading">
+  <img className="load" src="/img/vadi.gif" alt="Loading..." />
 </div>
+
   
   }
 

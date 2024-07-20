@@ -84,7 +84,7 @@ export function LogNote({ outlist, finaltotal, packfinaltotal, packtotal, total,
               <th scope="row">{shift ? `${shifttime[index]} - ${shifttime[index + 1]}` : `${shifttime[index + 8]} - ${shifttime[index + 9]}`}</th>
               <td>{planarr[index]}/ {plan[index]}</td>
               <td>{item} / {finaltotal[index]}</td>
-              <td>{-1 * parseInt(packtotal[index])} / {packfinaltotal[index]}</td>
+              <td>{packfinaltotal[index]} / {(packtotal[index])}</td>
               <td>{parseInt(item) - parseInt(planarr[index])} / {parseInt(finaltotal[index]) - parseInt(plan[index])}</td>
             </tr>
           ))}

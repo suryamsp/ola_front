@@ -131,3 +131,14 @@
   font-weight: bold;
 
 }
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.load{
+  margin-top: 100px;
+  width: 200px;
+  height: 200px;
+}
