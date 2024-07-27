@@ -70,16 +70,26 @@ export function Table() {
     }, [total]);
 
     useEffect(() => {
-      const cumulativeSums = packtotal.reduce((acc, value) => {
-        const lastSum = acc.length > 0 ? acc[acc.length - 1] : 0;
-        acc.push(value - lastSum);
+      const cumulative = packtotal.reduce((acc, value, index) => {
+        // Calculate the difference from the previous value
+        if (index > 0) {
+          acc.push(value - packtotal[index - 1]);
+        } else {
+          acc.push(value);
+        }
         return acc;
       }, []);
-      setpackfinaltotal(cumulativeSums);
+      setpackfinaltotal(cumulative); // [30, 120, 90, 60]
     }, [packtotal]);
+    
+    
 
-
-
+    
+    useEffect(() => {
+      console.log(packfinaltotal)
+    }, [packfinaltotal]);
+    
+    
   
   const upvaluearray = () => {
     let tempArray = [];
