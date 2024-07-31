@@ -1,10 +1,26 @@
 import { useState, useEffect } from "react";
+import React, { useRef } from 'react';
+import html2canvas from 'html2canvas';
+
+
 
 export function LogNote({ outlist, finaltotal, packfinaltotal, packtotal, total, namelist, shift, setShift, shifttime }) {
 
   const [planlenth, setpalnlength] = useState('0');
   const [planarr, setplanarr] = useState([]);
   const [plan, setplan] = useState([]);
+
+
+    const tableRef = useRef();
+  
+    const downloadImage = () => {
+      html2canvas(tableRef.current).then((canvas) => {
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'table.png';
+        link.click();
+      });
+    };
 
 
   const head = {
@@ -66,7 +82,7 @@ export function LogNote({ outlist, finaltotal, packfinaltotal, packtotal, total,
   return (
     <div className="table-responsive lognote_div">
       <h1>LOG NOTE</h1>
-      <table className="table table-bordered">
+      <table className="table table-bordered"  ref={tableRef} border="5">
         <thead className="table-warning">
           <tr>
 
@@ -91,6 +107,8 @@ export function LogNote({ outlist, finaltotal, packfinaltotal, packtotal, total,
         </tbody>
 
       </table>
+      <button type="button"
+            className="btn btn-primary font-weight-bold" onClick={downloadImage}>Download Table</button>
     </div>
   );
 }
