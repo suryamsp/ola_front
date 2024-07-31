@@ -38,24 +38,24 @@ export function LogNote({ outlist, finaltotal, packfinaltotal, packtotal, total,
   useEffect(() => {
     const newPlanArr = shift
       ? [
-        26 * parseInt(planlenth),
-        26 * parseInt(planlenth),
+        25 * parseInt(planlenth),
+        25 * parseInt(planlenth),
         24 * parseInt(planlenth),
-        26 * parseInt(planlenth),
-        26 * parseInt(planlenth),
+        25 * parseInt(planlenth),
+        25 * parseInt(planlenth),
         16 * parseInt(planlenth),
-        26 * parseInt(planlenth),
-        30 * parseInt(planlenth)
+        25 * parseInt(planlenth),
+        35 * parseInt(planlenth)
       ]
       : [
-        30 * parseInt(planlenth),
-        26 * parseInt(planlenth),
+        35 * parseInt(planlenth),
+        25 * parseInt(planlenth),
         24 * parseInt(planlenth),
-        26 * parseInt(planlenth),
-        26 * parseInt(planlenth),
+        25 * parseInt(planlenth),
         16 * parseInt(planlenth),
-        26 * parseInt(planlenth),
-        26 * parseInt(planlenth)
+        25 * parseInt(planlenth),
+        25 * parseInt(planlenth),
+        25 * parseInt(planlenth)
       ];
 
     setplanarr(newPlanArr);
