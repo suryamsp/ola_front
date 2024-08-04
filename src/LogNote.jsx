@@ -82,7 +82,7 @@ export function LogNote({ outlist, finaltotal, packfinaltotal, packtotal, total,
   return (
     <div className="table-responsive lognote_div">
       <h1>LOG NOTE</h1>
-      <table className="table table-bordered"  ref={tableRef} border="5">
+      <table className="table table-bordered log_table_div"  ref={tableRef} border="1">
         <thead className="table-warning">
           <tr>
 

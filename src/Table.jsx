@@ -20,6 +20,8 @@ export function Table() {
   const [shift, setShift] = useState(true);
   const [btn, setBtn] = useState(false);
   const [load, setLoad]= useState(false)
+  const [editvalue, setEditValue]= useState({})
+  const[editidx,setEditIdx]= useState(false);
 
 
   const shifttime=[6,7,8,9,10,11,12,1,'2.30',4,5,6,7,8,9,10,11];
@@ -85,9 +87,7 @@ export function Table() {
     
 
     
-    useEffect(() => {
-      console.log(packfinaltotal)
-    }, [packfinaltotal]);
+
     
     
   
@@ -146,15 +146,14 @@ export function Table() {
 
   const formik = useFormik({
     initialValues: upvalue.reduce((acc,name,_, index) => {
-      acc[`${name}`] = ''; // Initialize each dynamic field
+      acc[`${name}`] = ''; 
       return acc;
     }, {}),
     onSubmit: (values) => {
-      // Process form values and update hrsvalue state
-      // sethrsvalue(values);
+
      sethrsvalue(values);
 
-      // Add your submission logic here
+     
     }
   });
 
@@ -249,6 +248,30 @@ export function Table() {
 
 
 
+  const deleteItem = async (ditem) => {
+    try {
+      await fetch(`${API}/output/${ditem}`, {
+        method: 'DELETE',
+      });
+  
+      window.location.reload(); // Corrected line to reload the page
+    } catch (error) {
+      console.error('Error deleting note:', error);
+    }
+  };
+  
+
+//   useEffect(() => {
+
+// // console.log(editvalue);
+//       (editvalue); // Assuming `editvalue` is an array and you want to delete the first item
+   
+//   }, [editvalue]);
+  
+
+
+
+
 
 
 
@@ -338,35 +361,44 @@ export function Table() {
           <div onSubmit={formik.handleSubmit} className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
-                {'UPDATE VALUE'} {/* Change title based on whether editing or adding */}
+               
+               {'UPDATE VALUE'}  {/* Change title based on whether editing or adding */}
               </h5>
               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div className="modal-body">
-    <form onSubmit={formik.handleSubmit}>
 
+
+
+<form onSubmit={formik.handleSubmit}>
   <div className="form-group">
+
     {upvalue.map((name, index) => (
       <div key={index}>
         <label htmlFor={`title-${index}`} className="col-form-label font-weight-bold">
           {name}
         </label>
-        <input
-  type="number"
-  className="form-control"
-  id={`title-${index}`}
-  name={`${name}`}
-  onChange={formik.handleChange}
-  onBlur={formik.handleBlur}
-  value={formik.values[`${name}`]}
-  required
-/>
-          
+        {/* Check if editvalue exists and use its data */}
+       
+          <input
+            type="number"
+            className="form-control"
+            id={`title-${index}`}
+            name={name}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values[`${name}`]}
+            required
+          />
+     
       </div>
     ))}
   </div>
+
+
+
                 <div className="modal-footer">
 
                   <button type="submit" className="btn btn-primary"  disabled={btn}  >
@@ -374,6 +406,9 @@ export function Table() {
                   </button>
                 </div>
               </form>
+
+
+
             </div>
           </div>
         </div>
@@ -398,50 +433,69 @@ export function Table() {
       ))}
     <th>TOTAL</th>
     <th>PACK</th>
+    <th></th>
   </tr>
 </thead>
 
 
- <tbody>
+<tbody>
   {outlist.map((item, index) => (
-  <tr key={index}>
-     <td >
-  {shift ? `${shifttime[index]} - ${shifttime[index+1]}` : `${shifttime[index+8]} - ${shifttime[index+9]}`}
-</td>
+    <tr key={index}>
+      <td>
+        {shift
+          ? `${shifttime[index]} - ${shifttime[index + 1]}`
+          : `${shifttime[index + 8]} - ${shifttime[index + 9]}`}
+      </td>
 
-    {Object.keys(item.name)
-  .filter(key => key !== 'PACK')
-  .map((key, idx) => (
+      {Object.keys(item.name)
+        .filter((key) => key !== "PACK")
+        .map((key) => (
+          <td key={key}>{item.name[key]}</td>
+        ))}
+
+      <td>
+        {(() => {
+          const keys = Object.keys(item.name).filter((key) => key !== "PACK");
+          const sum = keys
+            .map((key) => parseInt(item.name[key]) || 0)
+            .reduce((acc, currentValue) => acc + currentValue, 0);
+          return sum;
+        })()}{" "}
+        / {finaltotal[index]}
+      </td>
+
+      {Object.keys(item.name)
+        .filter((key) => key === "PACK")
+        .map((key) => (
+          <td key={key}>
+            {packfinaltotal[index]} / {item.name[key]}
+          </td>
+        ))}
+
+     
+        <td >
+          <button
+            type="button"
+            className="btn btn-danger font-weight-bold update_btn"
+            onClick={() => {deleteItem(item._id)}}
+          >
+            Delete
+          </button>
+        </td>
     
-    <td key={idx}>{item.name[key]}</td>
+    </tr>
   ))}
 
-    <td>
-      {(() => {
-        const keys = Object.keys(item.name).filter(key => key !== 'PACK');
-        const sum = keys
-          .map(key => parseInt(item.name[key]) || 0)
-          .reduce((acc, currentValue) => acc + currentValue, 0);
-        return sum;
-      })()}{' / '} {finaltotal[index]}
-    </td>
-    {Object.keys(item.name)
-  .filter(key => key === 'PACK')
-  .map((key, idx) => (
-    <td key={idx}>{packfinaltotal[index]}{' / '}{item.name[key]}</td>
-  ))}
+  <tr className="table-success">
+    <td className="bold-text table-primary">TOTAL</td>
+    {filteredValues.map((value, idx) => (
+      <td key={idx} className="bold-text">
+        {totalValues(value)}
+      </td>
+    ))}
   </tr>
-  
-))}
-<tr className="table-success">
-  <td className="bold-text table-primary">TOTAL</td>
-  {filteredValues.map((value, idx) => (
-    <td key={idx} className="bold-text">{totalValues(value)}</td>
-  ))}
-</tr>
+</tbody>
 
-
-</tbody> 
 
 
 </table>

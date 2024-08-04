@@ -1,3 +1,7 @@
+body{
+  background-color: #c4c4c5;
+}
+
 .nav_bar_btn{
     margin: 20px;
     padding-top:50px;
@@ -21,7 +25,7 @@
 }
 
 .table_div{
-    margin: 20px;
+    margin: 5px;
     margin-bottom: 100px;
 }
 
@@ -63,18 +67,19 @@
 
 .shift_div{
     margin-left: 20px;
- 
+   
 
 }
 .shift_btn{
     font-weight: bold;
     font-size: 25px;
     margin-left: 15px;
+    
 
 }
 .shift_btn_div{
     border: none;
-    background-color: white;
+    background-color: #c4c4c5;
 }
 /* Container to display cards in a flexible layout */
 
@@ -145,4 +150,5 @@
 
 .lognote_div{
     margin-top: 50px;
+    
 }
