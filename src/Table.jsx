@@ -17,7 +17,7 @@ export function Table() {
   const [packtotal, setpackTotal] = useState([]); 
   const [finaltotal, setfinaltotal] = useState([]);
   const [packfinaltotal, setpackfinaltotal] = useState([]);
-  const [shift, setShift] = useState(false);
+  const [shift, setShift] = useState(true);
   const [btn, setBtn] = useState(false);
   const [load, setLoad]= useState(false)
   const [editvalue, setEditValue]= useState({})

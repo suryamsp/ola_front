@@ -49,29 +49,29 @@ export function LogNote({ outlist, finaltotal, packfinaltotal, packtotal, total,
     setplan(cumulativeSums);
   }, [planarr]);
 
-
+let X=30;
 
   useEffect(() => {
     const newPlanArr = shift
       ? [
-        25 * parseInt(planlenth),
-        25 * parseInt(planlenth),
-        24 * parseInt(planlenth),
-        25 * parseInt(planlenth),
-        25 * parseInt(planlenth),
-        16 * parseInt(planlenth),
-        25 * parseInt(planlenth),
-        35 * parseInt(planlenth)
+        X * parseInt(planlenth),
+        X * parseInt(planlenth),
+        (X-5) * parseInt(planlenth),
+        X * parseInt(planlenth),
+        X * parseInt(planlenth),
+        (X/2) * parseInt(planlenth),
+        X * parseInt(planlenth),
+        (X+(X/3)) * parseInt(planlenth)
       ]
       : [
-        35 * parseInt(planlenth),
-        25 * parseInt(planlenth),
-        24 * parseInt(planlenth),
-        25 * parseInt(planlenth),
-        16 * parseInt(planlenth),
-        25 * parseInt(planlenth),
-        25 * parseInt(planlenth),
-        25 * parseInt(planlenth)
+        (X+(X/3)) * parseInt(planlenth),
+        X * parseInt(planlenth),
+        (X-5) * parseInt(planlenth),
+        X * parseInt(planlenth),
+        (X/2) * parseInt(planlenth),
+        X * parseInt(planlenth),
+        X * parseInt(planlenth),
+        X * parseInt(planlenth)
       ];
 
     setplanarr(newPlanArr);
@@ -98,7 +98,7 @@ export function LogNote({ outlist, finaltotal, packfinaltotal, packtotal, total,
           {total.map((item, index) => (
             <tr key={index}>
               <th scope="row">{shift ? `${shifttime[index]} - ${shifttime[index + 1]}` : `${shifttime[index + 8]} - ${shifttime[index + 9]}`}</th>
-              <td>{planarr[index]}/ {plan[index]}</td>
+              <td>{planarr[index]} / {plan[index]}</td>
               <td>{item} / {finaltotal[index]}</td>
               <td>{packfinaltotal[index]} / {(packtotal[index])}</td>
               <td>{parseInt(item) - parseInt(planarr[index])} / {parseInt(finaltotal[index]) - parseInt(plan[index])}</td>
